@@ -1,0 +1,62 @@
+.authContainer{
+    display: flex;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    color: goldenrod;
+    width: 550px;
+    height: 220px;
+    border: 2px dotted #aaaaaa;
+    background-color: #111111;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flexItem{
+    display: flex;
+    flex: 1 1 25%;
+    border: 0px dotted #aaaaaa;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+.flexItem:nth-child(1){
+    text-align: center;
+}
+
+.input{
+    color: goldenrod;
+    background-color: #111111;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid goldenrod;
+    width: 80%;
+    margin: 0 auto;
+    height: 32px;
+}
+
+.footer{
+    display: flex;
+    flex: 1 1;
+    justify-content: space-between;
+    align-content: flex-end;
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 20px;
+}
+
+.links{
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+    margin: auto 0px;
+}
+
+.links h5{
+
+}
+
+.links h5 a{
+    margin-left: 10px;
+}

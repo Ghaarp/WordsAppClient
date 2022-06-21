@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.innerContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1080px;
+    height: 100%;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+    min-width: 400px;
+}
+
+.side{
+    min-width: 150px;
+    height: 100%;
+}
+
+.friends{
+    min-width: 150px;
+    height: 100%;
+}
+
+.main{
+    width: 100%;
+}
+
+.frame{
+    border: 3px dotted #aaaaaa;
+    border-radius: 10px;
+}
+
+.background{
+    background-color: #111111;
+}

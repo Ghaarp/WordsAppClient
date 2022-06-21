@@ -1,0 +1,52 @@
+.mainPageButton{
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 160px;
+    height: 120px;
+    margin: 5% 3px 3px;
+    background-color: #111111;
+    border: 0px;
+    box-sizing: inherit;
+    border: 2px solid rgba(255, 255, 255, 0);
+    transition: transform 0.1s;
+}
+
+.mainPageButton:active{
+    transform: scale(0.95);
+}
+
+
+.mainPageButton::after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 160px;
+    height: 120px;
+    border: 2px solid goldenrod;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
+
+.mainPageButton:hover{
+    color: goldenrod;
+}
+
+.mainPageButton:hover::after{
+    opacity: 1;
+}
+
+.mainPageButton:hover img{
+    transform: scale(1.2);
+}
+
+.mainPageButton img{
+    transition: transform 0.3s;
+    height: 32px;
+    width: 32px;
+    margin-top: 10px;
+    filter: invert(70%) sepia(100%) hue-rotate(10deg) brightness(0.85) saturate(1000%);
+}

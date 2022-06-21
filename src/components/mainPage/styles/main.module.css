@@ -1,0 +1,32 @@
+.mainPageContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.mainPageText{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    color: goldenrod;
+    padding-top: 5%;
+    font-size: 18px;
+}
+
+.mainPageAuth{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 0;
+}
+
+.mainPageAuth h1{
+    display: block;
+    color: goldenrod;
+    text-align: center;
+    width: 100%;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-around;
+}
