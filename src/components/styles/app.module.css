@@ -46,3 +46,8 @@
 .background{
     background-color: #111111;
 }
+
+.AppRouter{
+    height: 100%;
+    width: 100%;
+}

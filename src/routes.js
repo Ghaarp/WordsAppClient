@@ -1,13 +1,24 @@
 import Main from "./pages/Main";
 import {
-  AUTH_ROUTE,
+  CREATE_ROUTE,
   LOGIN_ROUTE,
   MAINPAGE_ROUTE,
   REGISTER_ROUTE,
 } from "./utils/consts";
 import Auth from "./pages/Auth";
+import Create from "./pages/Create";
+import CreateCardComponent from "./components/translation/CreateCardComponent";
 
-export const authRoutes = [];
+export const authRoutes = [
+  {
+    path: MAINPAGE_ROUTE,
+    component: <Main />,
+  },
+  {
+    path: CREATE_ROUTE,
+    component: <CreateCardComponent />,
+  },
+];
 
 export const publicRoutes = [
   {

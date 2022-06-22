@@ -1,6 +1,6 @@
 import React from "react";
 import { getClass } from "../utils/cssClasses";
-import classes from "../styles/app.module.css";
+import classes from "./styles/app.module.css";
 import { BrowserRouter } from "react-router-dom";
 import AppFrame from "./AppFrame";
 

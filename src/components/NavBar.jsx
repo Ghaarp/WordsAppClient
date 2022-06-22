@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { getClass } from "../utils/cssClasses";
 import classes from "./styles/navBar.module.css";
-import AppButton from "./AppButton";
+import AppButton from "./common/AppButton";
 import { Context } from "../index";
 import MainPageLogo from "./mainPage/MainPageLogo";
 import { observer } from "mobx-react-lite";

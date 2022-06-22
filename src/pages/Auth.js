@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import classes from "./styles/auth.module.css";
 import { FormControl } from "react-bootstrap";
-import AppButton from "../components/AppButton";
+import AppButton from "../components/common/AppButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, MAINPAGE_ROUTE, REGISTER_ROUTE } from "../utils/consts";
 import { errorHandle } from "../utils/errorHandler";

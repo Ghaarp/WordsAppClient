@@ -1,7 +1,8 @@
 import React from "react";
+import CreateCardComponent from "../components/translation/CreateCardComponent";
 
 const Create = () => {
-  return <div></div>;
+  return <CreateCardComponent />;
 };
 
 export default Create;

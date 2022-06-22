@@ -1,0 +1,70 @@
+.createCardContainer{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+
+.searchContainer{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top : 3%;
+    padding-left: 3%;
+    padding-bottom: 1%;
+    border-bottom: 2px solid goldenrod;
+    border-radius: 4%;
+    width: 100%;
+}
+
+.searchInput{
+    display: block;
+    background-color: #111111;
+    color: goldenrod;
+    font-size: 24px;
+    margin-right: 5px;
+    border: 0;
+    border-bottom: 1px solid goldenrod;
+    padding: 0 10px;
+    outline: none;
+    width: 350px;
+}
+
+.labelBox{
+    position: relative;
+    height: 0;
+    width: 0px;
+    border-top: 2px solid goldenrod;
+    transition: width 0.2s;
+}
+
+.searchLabel{
+    position: absolute;
+    bottom: 12px;
+    height: 25px;
+    width: 350px;
+    color: blanchedalmond;
+    opacity: 0.3;
+    font-size: 24px;
+    left: 9px;
+    transition: transform 0.2s, font-size 0.2s;
+    pointer-events: none;
+}
+
+.searchInput:focus ~ .labelBox .searchLabel,
+.searchInput:valid ~ .labelBox .searchLabel{
+    transform: translateY(-24px);
+    font-size: 17px;
+}
+
+.searchInput:focus ~ .labelBox{
+    width: 350px;
+}
+
+.searchInput:focus{
+    color: #aaaaaa;
+}
+
+.searchButton{
+    font-size: 24px;
+}
