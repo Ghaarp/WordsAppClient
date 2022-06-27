@@ -1,0 +1,110 @@
+.TranslationTreeContainer{
+    display: flex;
+    gap: 5px;
+
+}
+
+.TranslationTreeComponent{
+    color: goldenrod;
+}
+
+.borderedContainer{
+    border-bottom: 2px solid goldenrod;
+    padding-bottom: 8px;
+    border-bottom-left-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.index{
+    color: goldenrod;
+    border-left: 1px solid goldenrod;
+    border-bottom-left-radius: 6px;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+.number{
+    border: 1px solid goldenrod;
+    border-radius: 50%;
+    padding: 1px 7px;
+
+    box-sizing: content-box;
+}
+
+.textType{
+    display: inline;
+    font-family: Arial, serif;
+    font-size: 20px;
+}
+
+.textExpression{
+    display: inline;
+    font-family: Arial, serif;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.textValue{
+    display: inline;
+    font-size: 14px;
+}
+
+
+.synonymGroups{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 5px 3px;
+    margin-top: 15px;
+    border: 1px solid peru;
+    border-radius: 10px;
+}
+
+.synonymHeader {
+    position: absolute;
+    background-color: #111111;
+    top: -16px;
+    left: 14px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.synonym{
+    display: block;
+    font-size: 12px;
+    padding-top: 2px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.tag{
+    display: inline-block;
+    border: 1px solid goldenrod;
+    border-radius: 15%;
+    padding: 1px;
+    font-size: 10px;
+    background-color: peru;
+    color: #111111;
+    font-weight: bold;
+    box-sizing: content-box;
+}
+
+.meaning{
+    display: flex;
+    flex-direction: column;
+}
+
+.tags, .items{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags{
+    gap: 3px;
+}
+
+.items{
+    row-gap: 2px;
+    column-gap: 10px;
+}

@@ -3,6 +3,7 @@
     justify-content: flex-start;
     flex-direction: column;
     height: 100%;
+    padding: 5px;
 }
 
 .searchContainer{
@@ -67,4 +68,44 @@
 
 .searchButton{
     font-size: 24px;
+}
+
+.animSwitchLabelOpacity{
+    animation-name: switchLabelOpacity;
+}
+
+.animSwitchItemOpacity{
+    animation-name: switchItemOpacity;
+}
+
+.animSwitchLabelOpacity, .animSwitchItemOpacity{
+    animation-duration: 1.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes switchItemOpacity {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes switchBorderOpacity {
+    0%{
+        border-color: goldenrod;
+    }
+    100%{
+        border-color: rgba(218, 165, 32, 0);
+    }
+}
+
+@keyframes switchLabelOpacity {
+    0%{
+        opacity: 0.3;
+    }
+    100%{
+        opacity: 0;
+    }
 }

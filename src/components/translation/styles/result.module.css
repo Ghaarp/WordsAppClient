@@ -3,8 +3,8 @@
     flex-grow: 1;
     flex-shrink: 1;
     width: 100%;
-    height: 100%;
     max-height: 100%;
+    height: 20px;
     margin-top: 5px;
 }
 
@@ -18,6 +18,36 @@
     border-radius: 9em;
 }
 
-.TranslationTreeComponent{
-    color: goldenrod;
+.loadingContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.loading {
+    animation-name: loading;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    margin: 10px auto;
+    border: 2px solid goldenrod;
+
+    height: 48px;
+    width: 48px;
+}
+
+@keyframes loading {
+    0%{
+        transform: rotate(0);
+        border-radius: 0;
+    }
+    50%{
+        transform: rotate(180deg);
+        border-radius: 50%;
+    }
+    100%{
+        transform: rotate(360deg);
+        border-radius: 0;
+    }
+
 }

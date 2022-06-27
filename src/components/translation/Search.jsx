@@ -4,16 +4,22 @@ import classes from "./styles/createCard.module.css";
 import AppButton from "../common/AppButton";
 import { fetchTranslation } from "../../http/card";
 import { errorHandle } from "../../utils/errorHandler";
+import { getClass } from "../../utils/cssClasses";
 
 const Search = () => {
   const [expression, setExpression] = useState();
   const { translationResult } = useContext(Context);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [restart, setRestart] = useState(false);
 
   const { user } = useContext(Context);
   const { isAuth } = user;
 
   const fetchTranslationResult = async () => {
     translationResult.setTranslation(undefined);
+    translationResult.setIsLoading(true);
+    setIsMinimized(true);
+
     const res = await fetchTranslation(expression);
     if (
       errorHandle(
@@ -21,15 +27,23 @@ const Search = () => {
         () => {},
         () => {}
       )
-    )
+    ) {
+      translationResult.setIsLoading(false);
       return;
+    }
 
     const translationData = res.response.data;
     translationResult.setTranslation(translationData);
   };
 
+  const minmax = () => {
+    setIsMinimized(!isMinimized);
+    setRestart(true);
+  };
+
   return (
     <div className={classes.searchContainer}>
+      <AppButton onClick={minmax}>min\max</AppButton>
       <div>
         <input
           type="text"
@@ -39,9 +53,21 @@ const Search = () => {
         />
 
         <div className={classes.labelBox}>
-          <label className={classes.searchLabel}>Введите выражение</label>
+          <label
+            className={getClass([
+              classes.searchLabel,
+              classes.animSwitchLabelOpacity,
+            ])}
+            style={{
+              animationDirection: isMinimized ? "normal" : "reverse",
+              animationIterationCount: "none",
+            }}
+          >
+            Введите выражение
+          </label>
         </div>
       </div>
+
       <AppButton
         className={classes.searchButton}
         onClick={fetchTranslationResult}

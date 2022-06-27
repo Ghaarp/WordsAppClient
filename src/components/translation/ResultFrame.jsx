@@ -4,10 +4,10 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { toJS } from "mobx";
 import TranslationTreeComponent from "./result/TranslationTreeComponent";
-import Definitions from "./result/Definitions";
 
 const ResultFrame = observer(() => {
   const { translationResult } = useContext(Context);
+  const { isLoading } = translationResult;
 
   const translation = toJS(translationResult.translation);
   console.log(translation);
@@ -19,6 +19,13 @@ const ResultFrame = observer(() => {
 
   return (
     <div className={classes.resultContainer}>
+      {isLoading ? (
+        <div className={classes.loadingContainer}>
+          <div className={classes.loading} />
+        </div>
+      ) : (
+        <div />
+      )}
       <TranslationTreeComponent data={definitions} />
       <TranslationTreeComponent data={examples} />
       <TranslationTreeComponent data={translations} />
