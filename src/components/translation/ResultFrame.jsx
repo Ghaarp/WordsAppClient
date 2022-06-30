@@ -4,18 +4,22 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { toJS } from "mobx";
 import TranslationTreeComponent from "./result/TranslationTreeComponent";
+import HidableGroup from "./result/HidableGroup";
+import ImageBlock from "./result/ImageBlock";
 
 const ResultFrame = observer(() => {
   const { translationResult } = useContext(Context);
   const { isLoading } = translationResult;
 
   const translation = toJS(translationResult.translation);
-  console.log(translation);
 
   const { definitions, examples, translations } =
     translation && translation.data && translation.data.additionalData
       ? translation.data.additionalData
       : {};
+
+  const { imageData } = translation ? translation : {};
+  console.log(translation);
 
   return (
     <div className={classes.resultContainer}>
@@ -24,11 +28,36 @@ const ResultFrame = observer(() => {
           <div className={classes.loading} />
         </div>
       ) : (
-        <div />
+        <div>
+          {translation && translation.data && translation.data.translation ? (
+            <div className={classes.translationBlock}>
+              <div className={classes.translation}>
+                {translation.data.translation}
+              </div>
+            </div>
+          ) : null}
+          {imageData ? (
+            <HidableGroup groupName={"Изображения"}>
+              <ImageBlock data={imageData} />
+            </HidableGroup>
+          ) : null}
+          {translations ? (
+            <HidableGroup groupName={"Варианты перевода"}>
+              <TranslationTreeComponent data={translations} />
+            </HidableGroup>
+          ) : null}
+          {definitions ? (
+            <HidableGroup groupName={"Значения"}>
+              <TranslationTreeComponent data={definitions} />
+            </HidableGroup>
+          ) : null}
+          {examples ? (
+            <HidableGroup groupName={"Примеры"}>
+              <TranslationTreeComponent data={examples} />
+            </HidableGroup>
+          ) : null}
+        </div>
       )}
-      <TranslationTreeComponent data={definitions} />
-      <TranslationTreeComponent data={examples} />
-      <TranslationTreeComponent data={translations} />
     </div>
   );
 });

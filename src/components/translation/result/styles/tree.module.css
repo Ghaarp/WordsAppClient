@@ -6,6 +6,9 @@
 
 .TranslationTreeComponent{
     color: goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .borderedContainer{
@@ -49,16 +52,16 @@
     font-size: 14px;
 }
 
+.textTranslation{
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 .synonymGroups{
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px 5px 3px;
-    margin-top: 15px;
-    border: 1px solid peru;
-    border-radius: 10px;
 }
 
 .synonymHeader {
@@ -73,9 +76,11 @@
 .synonym{
     display: block;
     font-size: 12px;
-    padding-top: 2px;
-    margin: 0;
+    padding: 0px 2px;
+    margin: 2px;
     font-weight: bold;
+    border: 1px  peru dashed;
+    border-radius: 2px;
 }
 
 .tag{
@@ -107,4 +112,16 @@
 .items{
     row-gap: 2px;
     column-gap: 10px;
+    flex-direction: column;
+    align-content: stretch;
+}
+
+.translations{}
+
+.translations .items{
+    flex-direction: column;
+}
+
+.synonymGroups .items{
+    flex-direction: row;
 }

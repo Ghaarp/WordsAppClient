@@ -43,7 +43,6 @@ const Search = () => {
 
   return (
     <div className={classes.searchContainer}>
-      <AppButton onClick={minmax}>min\max</AppButton>
       <div>
         <input
           type="text"
@@ -54,10 +53,7 @@ const Search = () => {
 
         <div className={classes.labelBox}>
           <label
-            className={getClass([
-              classes.searchLabel,
-              classes.animSwitchLabelOpacity,
-            ])}
+            className={getClass([classes.searchLabel])}
             style={{
               animationDirection: isMinimized ? "normal" : "reverse",
               animationIterationCount: "none",

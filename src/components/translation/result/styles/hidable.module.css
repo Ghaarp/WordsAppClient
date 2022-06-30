@@ -1,0 +1,69 @@
+.hidableGroup{
+    position: relative;
+    padding: 10px 5px 3px;
+    margin-top: 15px;
+    border: 1px solid peru;
+    border-radius: 10px;
+}
+
+.content{
+    overflow: hidden;
+    transition: height 0.3s;
+}
+
+.content.hidden{
+    height: 0;
+}
+
+.hidableGroup.hidden{
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-top: 1px solid peru;
+    border-radius: 0;
+    box-sizing: content-box;
+}
+
+.hidableGroup .header{
+    display: block;
+    position: absolute;
+    background-color: #111111;
+    top: -16px;
+    left: 14px;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: pointer;
+    color: goldenrod;
+}
+
+.hidableGroup .header::before{
+    content: "";
+    position: absolute;
+    top:12px;
+    right: -14px;
+    height: 12px;
+    width: 16px;
+    border: 0;
+    background-color: #111111;
+
+}
+
+.hidableGroup .header::after{
+    content: "";
+    position: absolute;
+    top:12px;
+    right: -8px;
+    height: 8px;
+    width: 8px;
+    border: 0;
+    border-left: 2px solid goldenrod;
+    border-bottom: 2px solid goldenrod;
+    background-color: #111111;
+    transform: rotate(-225deg);
+}
+
+.hidableGroup .header.hidden::after{
+    top:8px;
+    transform: rotate(-45deg);
+}
+
+
+

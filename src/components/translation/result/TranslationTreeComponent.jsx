@@ -1,8 +1,9 @@
 import React from "react";
 import classes from "./styles/tree.module.css";
 import { getClass } from "../../../utils/cssClasses";
+import HidableGroup from "./HidableGroup";
 
-const TranslationTreeComponent = ({ data, innerIndex }) => {
+const TranslationTreeComponent = ({ data, innerIndex, classNameAdditive }) => {
   return (
     <div
       className={getClass([
@@ -15,10 +16,12 @@ const TranslationTreeComponent = ({ data, innerIndex }) => {
           <div className={classes.number}> {innerIndex}</div>
         </div>
       ) : null}
-      <div className={getClass([classes.TranslationTreeComponent])}>
-        {data && data.type ? (
-          <div className={classes.textType}>{data.type}</div>
-        ) : null}
+      <div
+        className={getClass([
+          classNameAdditive,
+          classes.TranslationTreeComponent,
+        ])}
+      >
         {data && data.tags ? (
           <div className={classes.tags}>
             {data.tags.map((element) => (
@@ -38,28 +41,45 @@ const TranslationTreeComponent = ({ data, innerIndex }) => {
           </div>
         ) : null}
         {data && data.value && data.rarity ? (
-          <div className={classes.textValue}>
+          <div className={classes.textTranslation}>
             {data.value} - rarity: {data.rarity}
           </div>
         ) : null}
 
         {data && data.example ? (
           <div>
-            <h5>"{data.example}"</h5>{" "}
-            {data.source ? <h5> - {data.source}</h5> : null}{" "}
+            <div className={classes.textExpression}>
+              "
+              <div
+                className={classes.textExpression}
+                dangerouslySetInnerHTML={{ __html: data.example }}
+              />
+              "
+            </div>
+            {data.source ? (
+              <div className={classes.textValue}> - {data.source}</div>
+            ) : null}{" "}
           </div>
         ) : null}
         {data && data.synonym ? (
           <div className={classes.synonym}>{data.synonym}</div>
         ) : null}
 
-        {data && data.synonymGroups ? (
-          <div className={classes.synonymGroups}>
-            <div className={classes.synonymHeader}>Синонимы</div>
-            {data.synonymGroups.map((element) => (
-              <TranslationTreeComponent data={element} />
-            ))}
+        {data && data.translations ? (
+          <div className={classes.translations}>
+            {" "}
+            <TranslationTreeComponent data={data.translations} />{" "}
           </div>
+        ) : null}
+
+        {data && data.synonymGroups ? (
+          <HidableGroup groupName="Синонимы">
+            <div className={classes.synonymGroups}>
+              {data.synonymGroups.map((element) => (
+                <TranslationTreeComponent data={element} />
+              ))}
+            </div>
+          </HidableGroup>
         ) : null}
 
         {data && data.items ? (
@@ -70,11 +90,24 @@ const TranslationTreeComponent = ({ data, innerIndex }) => {
           </div>
         ) : null}
         {data && data.indexableItems ? (
-          <div className={classes.items}>
-            {data.indexableItems.map((element, index) => (
-              <TranslationTreeComponent data={element} innerIndex={++index} />
-            ))}
-          </div>
+          data.type ? (
+            <HidableGroup groupName={data.type}>
+              <div className={classes.items}>
+                {data.indexableItems.map((element, index) => (
+                  <TranslationTreeComponent
+                    data={element}
+                    innerIndex={++index}
+                  />
+                ))}
+              </div>
+            </HidableGroup>
+          ) : (
+            <div className={classes.items}>
+              {data.indexableItems.map((element, index) => (
+                <TranslationTreeComponent data={element} innerIndex={++index} />
+              ))}
+            </div>
+          )
         ) : null}
       </div>
     </div>
