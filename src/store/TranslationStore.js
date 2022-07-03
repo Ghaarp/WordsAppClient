@@ -1,4 +1,5 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
+import { TranslationHelper } from "../helpers/translationHelper";
 
 export class TranslationStore {
   constructor() {
@@ -9,7 +10,9 @@ export class TranslationStore {
 
   setTranslation(result) {
     this._isLoading = false;
-    this._translation = result;
+    const translationHelper = new TranslationHelper();
+    const res = translationHelper.addRequiredFields(result);
+    this._translation = res;
   }
 
   setIsLoading(value) {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { getClass } from "../utils/cssClasses";
 import classes from "./styles/navBar.module.css";
 import AppButton from "./common/AppButton";
@@ -9,6 +9,10 @@ import { observer } from "mobx-react-lite";
 const NavBar = observer(({ className, children }) => {
   const { user, appState } = useContext(Context);
   const isAuth = user.isAuth;
+
+  useEffect(() => {
+    user.tryLoginByToken();
+  });
 
   const switchSideBar = () => {
     appState.setSideBar(!appState.sideBar);

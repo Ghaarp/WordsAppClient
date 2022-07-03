@@ -19,7 +19,6 @@ const ResultFrame = observer(() => {
       : {};
 
   const { imageData } = translation ? translation : {};
-  console.log(translation);
 
   return (
     <div className={classes.resultContainer}>
