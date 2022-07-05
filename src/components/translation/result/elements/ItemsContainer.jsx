@@ -6,7 +6,7 @@ const ItemsContainer = ({ data }) => {
   return (
     <div className={classes.items}>
       {data.items.map((element, index) => (
-        <TranslationTreeComponent data={element} />
+        <TranslationTreeComponent key={element.id} data={element} />
       ))}
     </div>
   );

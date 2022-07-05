@@ -8,7 +8,7 @@ const SynonymGroups = ({ data }) => {
     <HidableGroup groupName="Синонимы">
       <div className={classes.synonymGroups}>
         {data.synonymGroups.map((element) => (
-          <TranslationTreeComponent data={element} />
+          <TranslationTreeComponent key={element.id} data={element} />
         ))}
       </div>
     </HidableGroup>

@@ -1,9 +1,10 @@
 .hidableGroup{
     position: relative;
-    padding: 10px 5px 3px;
+    padding: 15px 5px 3px;
     margin-top: 15px;
     border: 1px solid peru;
     border-radius: 10px;
+    min-width: 170px;
 }
 
 .content{
@@ -26,8 +27,8 @@
     display: block;
     position: absolute;
     background-color: #111111;
-    top: -16px;
-    left: 35px;
+    top: -14px;
+    left: 30px;
     padding-left: 3px;
     padding-right: 3px;
     cursor: pointer;
@@ -50,7 +51,7 @@
     content: "";
     position: absolute;
     top:12px;
-    right: -8px;
+    right: -9px;
     height: 8px;
     width: 8px;
     border: 0;
@@ -65,5 +66,21 @@
     transform: rotate(-45deg);
 }
 
+.groupCheckbox::before{
+    position: absolute;
+    top: -5px;
+    content: "";
+    background-color: #111111;
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    border: 1px solid goldenrod;
+}
+
+.groupCheckbox{
+    position: absolute;
+    top: -9px;
+    left: 10px;
+}
 
 

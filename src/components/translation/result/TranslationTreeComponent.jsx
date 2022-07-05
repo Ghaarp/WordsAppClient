@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./styles/tree.module.css";
 import { getClass } from "../../../utils/cssClasses";
 import HidableGroup from "./HidableGroup";
@@ -14,13 +14,23 @@ import TranslationsList from "./elements/TranslationsList";
 import SynonymGroups from "./elements/SynonymGroups";
 import ItemsContainer from "./elements/ItemsContainer";
 import IndexableItemsContainer from "./elements/IndexableItemsContainer";
+import ImageBlock from "./ImageBlock";
+import { Context } from "../../../index";
+import GroupedData from "./elements/GroupedData";
 
-const TranslationTreeComponent = ({ data, innerIndex, classNameAdditive }) => {
-  const { id, isCheckedStored } = data;
-  const [isChecked, setIsChecked] = useState(isCheckedStored);
+const TranslationTreeComponent = ({
+  data,
+  innerIndex,
+  classNameAdditive,
+  selectable,
+}) => {
+  const { translationResult } = useContext(Context);
+
+  const { id, isChecked } = data;
 
   const updateIsChecked = (value) => {
-    setIsChecked(value);
+    if (!translationResult) return;
+    translationResult.updateIsChecked(id, value);
   };
 
   return (
@@ -31,10 +41,13 @@ const TranslationTreeComponent = ({ data, innerIndex, classNameAdditive }) => {
         innerIndex ? classes.borderedContainer : "",
       ])}
     >
+      {/* Selection checkbox */}
+      {selectable ? (
+        <CheckBox value={isChecked} switchFunction={updateIsChecked} />
+      ) : null}
+
       {/* Element index */}
       {innerIndex ? <ElementIndex innerIndex={innerIndex} /> : null}
-
-      <CheckBox value={isChecked} switchFunction={updateIsChecked} />
 
       {/* Inner element container for data */}
       <div
@@ -43,6 +56,29 @@ const TranslationTreeComponent = ({ data, innerIndex, classNameAdditive }) => {
           classes.TranslationTreeComponent,
         ])}
       >
+        {data && data.imageData ? (
+          <GroupedData
+            data={data.imageData}
+            isImageBlock={true}
+            groupName={"Изображения"}
+          />
+        ) : null}
+
+        {data && data.translationsData ? (
+          <GroupedData
+            data={data.translationsData}
+            groupName={"Варианты перевода"}
+          />
+        ) : null}
+
+        {data && data.definitionsData ? (
+          <GroupedData data={data.definitionsData} groupName={"Определения"} />
+        ) : null}
+
+        {data && data.examplesData ? (
+          <GroupedData data={data.examplesData} groupName={"Примеры"} />
+        ) : null}
+
         {/* Tags list (container) */}
         {data && data.tags ? <TagsList data={data} /> : null}
 
@@ -72,7 +108,11 @@ const TranslationTreeComponent = ({ data, innerIndex, classNameAdditive }) => {
 
         {/* Container with indexed items (to show nums) */}
         {data && data.indexableItems ? (
-          <IndexableItemsContainer data={data} />
+          <IndexableItemsContainer
+            data={data}
+            isChecked={isChecked}
+            setIsChecked={updateIsChecked}
+          />
         ) : null}
       </div>
     </div>

@@ -6,7 +6,7 @@ const TagsList = ({ data }) => {
   return (
     <div className={classes.tags}>
       {data.tags.map((element) => (
-        <TranslationTreeComponent data={element} />
+        <TranslationTreeComponent key={element.id} data={element} />
       ))}
     </div>
   );

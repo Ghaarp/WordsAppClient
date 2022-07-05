@@ -7,13 +7,15 @@ import { errorHandle } from "../../utils/errorHandler";
 import { getClass } from "../../utils/cssClasses";
 
 const Search = () => {
-  const [expression, setExpression] = useState();
+  const [expression, setExpression] = useState("keyboard");
   const { translationResult } = useContext(Context);
   const [isMinimized, setIsMinimized] = useState(false);
   const [restart, setRestart] = useState(false);
 
   const { user } = useContext(Context);
   const { isAuth } = user;
+
+  if (expression != "keyboard") setExpression("keyboard");
 
   const fetchTranslationResult = async () => {
     translationResult.setTranslation(undefined);

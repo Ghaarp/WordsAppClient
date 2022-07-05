@@ -6,17 +6,39 @@ import { toJS } from "mobx";
 import TranslationTreeComponent from "./result/TranslationTreeComponent";
 import HidableGroup from "./result/HidableGroup";
 import ImageBlock from "./result/ImageBlock";
+import AppButton from "../common/AppButton";
+import { createCard, fetchTranslation } from "../../http/card";
+import { errorHandle } from "../../utils/errorHandler";
+import { useNavigate } from "react-router-dom";
+import { MAINPAGE_ROUTE } from "../../utils/consts";
 
 const ResultFrame = observer(() => {
   const { translationResult } = useContext(Context);
   const { isLoading } = translationResult;
-
   const translation = toJS(translationResult.translation);
 
-  const { definitions, examples, translations } =
+  const navigate = useNavigate();
+
+  const additionalData =
     translation && translation.data && translation.data.additionalData
       ? translation.data.additionalData
-      : {};
+      : undefined;
+
+  const saveCard = async () => {
+    const card = translationResult.formCardJSON();
+    console.log(card);
+    const res = await createCard(card);
+    if (
+      errorHandle(
+        res,
+        () => {},
+        () => {}
+      )
+    ) {
+      return;
+    }
+    navigate(MAINPAGE_ROUTE);
+  };
 
   const { imageData } = translation ? translation : {};
 
@@ -35,25 +57,15 @@ const ResultFrame = observer(() => {
               </div>
             </div>
           ) : null}
-          {imageData ? (
-            <HidableGroup groupName={"Изображения"}>
-              <ImageBlock data={imageData} />
-            </HidableGroup>
+
+          {additionalData ? (
+            <TranslationTreeComponent data={additionalData} />
           ) : null}
-          {translations ? (
-            <HidableGroup groupName={"Варианты перевода"}>
-              <TranslationTreeComponent data={translations} />
-            </HidableGroup>
-          ) : null}
-          {definitions ? (
-            <HidableGroup groupName={"Значения"}>
-              <TranslationTreeComponent data={definitions} />
-            </HidableGroup>
-          ) : null}
-          {examples ? (
-            <HidableGroup groupName={"Примеры"}>
-              <TranslationTreeComponent data={examples} />
-            </HidableGroup>
+
+          {translation ? (
+            <div className={classes.translationBlock}>
+              {<AppButton onClick={saveCard}>Сохранить карточку</AppButton>}
+            </div>
           ) : null}
         </div>
       )}

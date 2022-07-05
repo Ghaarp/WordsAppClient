@@ -29,5 +29,73 @@
 }
 
 .image{
+    opacity: unset;
+}
 
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border: 2px solid #111111;
+    box-sizing: content-box;
+    transition: border-color .2s;
+    overflow: hidden;
+    min-height: 80px;
+    align-content: center;
+}
+
+.imageContainer .imageFlag{
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background-color: #111111;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.imageContainer .setAsMainButton{
+    position: absolute;
+    background-color: #111111;
+    color: goldenrod;
+    bottom: -35px;
+    left: 0;
+    font-size: 9px;
+    padding: 1px 5px 3px;
+    vertical-align: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+.imageContainer .setAsMainButton:hover{
+    text-decoration: underline;
+}
+
+.imageContainer .increase{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.imageContainer:hover .setAsMainButton{
+    transform: translateY(-33px);
+}
+
+.imageContainer:hover, .imageContainer.checked{
+    border: 2px solid goldenrod;
+}
+
+.imageContainer:hover .imageFlag, .imageContainer.checked .imageFlag{
+    opacity: 1;
+}
+
+.imageContainer:hover .increase{
+    opacity: 0.6;
 }

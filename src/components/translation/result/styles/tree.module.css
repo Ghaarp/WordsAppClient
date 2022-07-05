@@ -12,10 +12,12 @@
 }
 
 .borderedContainer{
+    border-left: 1px solid goldenrod;
     border-bottom: 2px solid goldenrod;
     padding-bottom: 8px;
     border-bottom-left-radius: 20px;
     margin-bottom: 10px;
+    padding-left: 4px;
 }
 
 

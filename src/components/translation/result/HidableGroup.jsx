@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import classes from "./styles/hidable.module.css";
 import commonClasses from "../../../styles/common.module.css";
 import { getClass } from "../../../utils/cssClasses";
+import CheckBox from "./elements/CheckBox";
 
-const HidableGroup = ({ groupName, defaultState, children }) => {
+const HidableGroup = ({
+  groupName,
+  defaultState,
+  children,
+  selectable,
+  isChecked,
+  setIsChecked,
+}) => {
   const [isHidden, setIsHidden] = useState(defaultState || true);
 
   const updateHidden = () => {
@@ -17,6 +25,14 @@ const HidableGroup = ({ groupName, defaultState, children }) => {
         isHidden ? classes.hidden : "",
       ])}
     >
+      {selectable ? (
+        <CheckBox
+          className={classes.groupCheckbox}
+          value={isChecked}
+          switchFunction={setIsChecked}
+        />
+      ) : null}
+
       <div
         className={getClass([
           classes.header,
