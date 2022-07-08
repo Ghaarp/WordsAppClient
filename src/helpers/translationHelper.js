@@ -21,7 +21,7 @@ export class TranslationHelper {
     }
 
     item.id = id;
-    item.isChecked = true;
+    this._setIsChecked(item, true);
   }
 
   updateIsChecked(id, value) {
@@ -37,9 +37,20 @@ export class TranslationHelper {
   }
 
   //Private, do not use
+  _setIsChecked(element, value) {
+    if (!element) return;
+
+    if (!value && element.isMainElement) {
+      element.isMainElement = false;
+    }
+
+    element.isChecked = value;
+  }
+
+  //Private, do not use
   _updateIsCheckedDownstream(element, value) {
     if (!element || typeof element != "object") return;
-    element.isChecked = value;
+    this._setIsChecked(element, value);
     for (let key in element) {
       if (element[key] && typeof element[key] == "object") {
         this._updateIsCheckedDownstream(element[key], value);
@@ -52,7 +63,7 @@ export class TranslationHelper {
     const pathToElement = element.id.split(this._symbol);
     pathToElement.pop();
 
-    //First two layers of data must be selected always
+    //First two layers of data must be always selected
     if (pathToElement.length === 2) {
       return;
     }
@@ -77,7 +88,7 @@ export class TranslationHelper {
       }
     }
 
-    elementToHandle.isChecked = flag;
+    this._setIsChecked(elementToHandle, flag);
     this._updateIsCheckedUpstream(elementToHandle);
   }
 
@@ -117,7 +128,6 @@ export class TranslationHelper {
     if (!element) return;
 
     if (parent && !element.isChecked) {
-      console.log(element);
       parent[key] = undefined;
       return;
     }
@@ -128,6 +138,44 @@ export class TranslationHelper {
     for (let key in element) {
       if (element[key] && typeof element[key] == "object") {
         this._prepareElementForConvertation(element[key], element, key);
+
+        //Clearing nulls in inner arrays
+        if (element[key] instanceof Array)
+          element[key] = element[key].filter((x) => x);
+      }
+    }
+  }
+
+  updateIsMainElement(id, value) {
+    if (!id) return;
+
+    const element = this.getElementByID(id);
+    if (!element) return;
+
+    if (!value) {
+      element.isMainElement = false;
+      return;
+    }
+    this._unsetOtherElements(element);
+
+    element.isMainElement = true;
+    this._setIsChecked(element, true);
+  }
+
+  _unsetOtherElements(element) {
+    if (!element) return;
+
+    const pathToElement = element.id.split(this._symbol);
+
+    if (!pathToElement || pathToElement.length === 0) return;
+
+    pathToElement.pop();
+
+    const parent = this.getElementByID(pathToElement.join(this._symbol));
+
+    for (let key in parent) {
+      if (parent[key] && typeof parent[key] == "object") {
+        parent[key].isMainElement = false;
       }
     }
   }

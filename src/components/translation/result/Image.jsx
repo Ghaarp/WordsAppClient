@@ -5,25 +5,25 @@ import { getClass } from "../../../utils/cssClasses";
 import CheckBox from "./elements/CheckBox";
 import loup from "../../../assets/button/loup48.png";
 import { Context } from "../../../index";
+import { observer } from "mobx-react-lite";
 
 const Image = ({ data, showImage }) => {
-  const [isMainImage, setIsMainImage] = useState(data.isMainImage);
-
   const { translationResult } = useContext(Context);
-  const { id, isChecked } = data;
+  const { id, isChecked, isMainElement } = data;
 
   const updateIsChecked = (value) => {
     if (!translationResult) return;
     translationResult.updateIsChecked(id, value);
 
-    if (!value && isMainImage) {
-      updateIsMainImage();
+    if (!value && isMainElement) {
+      updateIsMainElement();
     }
   };
 
-  const updateIsMainImage = () => {
-    const newValue = !isMainImage;
-    setIsMainImage(newValue);
+  const updateIsMainElement = () => {
+    const newValue = !isMainElement;
+    if (!translationResult) return;
+    translationResult.updateIsMainElement(id, newValue);
 
     if (newValue && !isChecked) {
       updateIsChecked(true);
@@ -58,10 +58,10 @@ const Image = ({ data, showImage }) => {
           <img src={loup} className={classes.increase} />
           <div
             className={classes.setAsMainButton}
-            onClick={updateIsMainImage}
+            onClick={updateIsMainElement}
             style={{ width: data.thumbnail.width }}
           >
-            {isMainImage
+            {isMainElement
               ? "Основное изображение"
               : "Установить как основное изображение"}
           </div>

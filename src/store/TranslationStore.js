@@ -45,7 +45,6 @@ export class TranslationStore {
     const translationHelper = new TranslationHelper(this._translationOriginal);
     translationHelper.updateIsChecked(id, value);
     this._updateTranslation();
-    console.log(this._translationOriginal);
   }
 
   get translation() {
@@ -64,7 +63,15 @@ export class TranslationStore {
     return new TranslationHelper(this._translationOriginal).formCardJSON();
   }
 
+  updateIsMainElement(id, value) {
+    if (!this._translationOriginal) return;
+    const translationHelper = new TranslationHelper(this._translationOriginal);
+    translationHelper.updateIsMainElement(id, value);
+    this._updateTranslation();
+  }
+
   _updateTranslation() {
+    console.log(this._translationOriginal);
     this._translation = this._translationOriginal;
   }
 }
