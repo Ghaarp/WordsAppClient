@@ -1,13 +1,152 @@
-.cardsList{
+.cardsListContainer{
+    overflow-y: scroll;
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    width: 100%;
+    gap: 10px;
+    flex-direction: column;
+    align-content: stretch;
+    flex-grow: 1;
+    flex-shrink: 1;
     max-height: 100%;
-    margin: 5px;
-    border: 2px dotted #aaaaaa;
+    border: 2px solid #aaaaaa;
+}
+
+
+.cardsListContainer::-webkit-scrollbar{
+    background-color: #111111;
+}
+
+.cardsListContainer::-webkit-scrollbar-thumb {
+    background-color: goldenrod;
+    border-radius: 9em;
+}
+
+.cardsList{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: space-around;
+    grid-gap: 10px;
+    flex-wrap: wrap;
+    padding: 5px;
 }
 
 .card{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    height: 100px;
+    width: 250px;
+}
 
+.imgContainer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-right: 2px dotted goldenrod;
+    height: 100%;
+    width: 120px;
+    padding: 3px;
+}
+
+.innerImgContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 90px;
+    width: 115px;
+}
+
+.innerImgContainer.imgHidden{
+    cursor: pointer;
+}
+
+.image{
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+    margin: auto;
+}
+
+.lock{
+    position: relative;
+    object-fit: contain;
+    margin: auto;
+    filter: invert(70%) sepia(100%) hue-rotate(10deg) brightness(0.85) saturate(600%);
+}
+
+.lockBody{
+    position: absolute;
+    top: -32px;
+    left: -32px;
+}
+
+.lockShackle{
+    position: absolute;
+    top: -26px;
+    left: -32px;
+    transition: transform 0.2s;
+}
+
+.imgContainer:hover .lockShackle{
+    transform: translateY(-6px);
+}
+
+.dataContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+    color: goldenrod;
+    padding-top: 10px;
+}
+
+.expression, .translation, .translationHidden{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 16px;
+}
+
+.expression{
+    font-weight: bold;
+}
+
+.translation{
+    font-style: italic;
+}
+
+.translationHidden{
+    font-size: 12px;
+    cursor: pointer;
+    color: #111111;
+    background-color: goldenrod;
+    border: 2px solid goldenrod;
+    padding: 0 2px;
+    border-radius: 4px;
+}
+
+.fullDataButton{
+    display: block;
+    position:absolute;
+    top: 0;
+    right: 0;
+    height: 18px;
+    width: 18px;
+    color: #111111;
+    background-color: goldenrod;
+    text-align: center;
+    font-size: 14px;
+    line-height: 14px;
+    border: 1px solid goldenrod;
+    border-bottom-left-radius: 3px;
+    transition: font-size 0.3s;
+    cursor: pointer;
+}
+
+.fullDataButton:hover{
+    font-size: 15px;
 }

@@ -7,11 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppContainer
-        className={getClass([
-          classes.frame,
-          classes.container,
-          classes.background,
-        ])}
+        className={getClass([classes.container, classes.background])}
       />
     </BrowserRouter>
   );

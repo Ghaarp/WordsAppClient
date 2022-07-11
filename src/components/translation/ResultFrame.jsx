@@ -11,6 +11,7 @@ import { createCard, fetchTranslation } from "../../http/card";
 import { errorHandle } from "../../utils/errorHandler";
 import { useNavigate } from "react-router-dom";
 import { MAINPAGE_ROUTE } from "../../utils/consts";
+import LoadingComponent from "../common/LoadingComponent";
 
 const ResultFrame = observer(() => {
   const { translationResult } = useContext(Context);
@@ -45,9 +46,7 @@ const ResultFrame = observer(() => {
   return (
     <div className={classes.resultContainer}>
       {isLoading ? (
-        <div className={classes.loadingContainer}>
-          <div className={classes.loading} />
-        </div>
+        <LoadingComponent />
       ) : (
         <div>
           {translation && translation.data && translation.data.translation ? (

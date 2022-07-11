@@ -5,11 +5,11 @@ import imgCreate from "../../assets/button/plus32.png";
 import imgList from "../../assets/button/list32.png";
 import imgTest from "../../assets/button/test32.png";
 import { useNavigate } from "react-router-dom";
-import { CREATE_ROUTE } from "../../utils/consts";
+import { CARDS_LIST_ROUTE, CREATE_ROUTE } from "../../utils/consts";
 import { Context } from "../../index";
 
 const MainPageAuth = () => {
-  const { translationResult } = useContext(Context);
+  const { translationResult, cards } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -19,6 +19,10 @@ const MainPageAuth = () => {
     navigate(CREATE_ROUTE);
   };
 
+  const showCardsList = () => {
+    navigate(CARDS_LIST_ROUTE);
+  };
+
   return (
     <div className={classes.mainPageAuth}>
       <h1>Теперь вы можете:</h1>
@@ -26,7 +30,7 @@ const MainPageAuth = () => {
         <MainPageButton imgSource={imgCreate} onClick={createNewCard}>
           <h5>Создать карточку</h5>
         </MainPageButton>
-        <MainPageButton imgSource={imgList}>
+        <MainPageButton imgSource={imgList} onClick={showCardsList}>
           <h5>Просмотреть карточки</h5>
         </MainPageButton>
         <MainPageButton imgSource={imgTest}>

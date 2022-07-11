@@ -1,5 +1,6 @@
 import Main from "./pages/Main";
 import {
+  CARDS_LIST_ROUTE,
   CREATE_ROUTE,
   LOGIN_ROUTE,
   MAINPAGE_ROUTE,
@@ -8,6 +9,7 @@ import {
 import Auth from "./pages/Auth";
 import Create from "./pages/Create";
 import CreateCardComponent from "./components/translation/CreateCardComponent";
+import Cards from "./pages/Cards";
 
 export const authRoutes = [
   {
@@ -17,6 +19,10 @@ export const authRoutes = [
   {
     path: CREATE_ROUTE,
     component: <CreateCardComponent />,
+  },
+  {
+    path: CARDS_LIST_ROUTE,
+    component: <Cards />,
   },
 ];
 

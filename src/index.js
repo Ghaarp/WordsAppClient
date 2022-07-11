@@ -4,6 +4,7 @@ import App from "./App";
 import { UserStore } from "./store/UserStore";
 import { AppState } from "./store/AppState";
 import { TranslationStore } from "./store/TranslationStore";
+import { CardsStore } from "./store/CardsStore";
 export const Context = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -13,6 +14,7 @@ root.render(
       user: new UserStore(),
       appState: new AppState(),
       translationResult: new TranslationStore(),
+      cards: new CardsStore(),
     }}
   >
     <App />
