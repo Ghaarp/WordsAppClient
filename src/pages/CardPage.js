@@ -1,8 +1,8 @@
 import React from "react";
 import CardDataComponent from "../components/translation/CardDataComponent";
 
-const Create = () => {
-  return <CardDataComponent showSearch={"true"} />;
+const CardPage = () => {
+  return <CardDataComponent showSearch={false} />;
 };
 
-export default Create;
+export default CardPage;

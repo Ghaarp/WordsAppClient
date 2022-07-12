@@ -5,19 +5,20 @@
     margin-right: auto;
     color: goldenrod;
     width: 550px;
-    height: 220px;
+    height: 260px;
     border: 2px dotted #aaaaaa;
     background-color: #111111;
     flex-direction: column;
-    justify-content: space-between;
+    align-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .flexItem{
     display: flex;
     flex: 1 1 25%;
     border: 0px dotted #aaaaaa;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     align-content: flex-end;
 }
 
@@ -25,15 +26,8 @@
     text-align: center;
 }
 
-.input{
-    color: goldenrod;
-    background-color: #111111;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid goldenrod;
-    width: 80%;
-    margin: 0 auto;
-    height: 32px;
+.authInput{
+    width: 90%;
 }
 
 .footer{
@@ -50,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-content: baseline;
-    margin: auto 0px;
+    margin: auto 0;
 }
 
 .links h5{

@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./styles/elements.module.css";
 import HidableGroup from "../HidableGroup";
 import TranslationTreeComponent from "../TranslationTreeComponent";
+import { Context } from "../../../../index";
 
 const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
+  const { translationResult } = useContext(Context);
+  const { isSelectionEnabled } = translationResult;
+
   return (
     <div>
       {data.type ? (
         <HidableGroup
           groupName={data.type}
-          selectable={true}
+          selectable={isSelectionEnabled}
           isChecked={isChecked}
           setIsChecked={setIsChecked}
         >
@@ -19,7 +23,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
                 key={element.id}
                 data={element}
                 innerIndex={++index}
-                selectable={true}
+                selectable={isSelectionEnabled}
               />
             ))}
           </div>
@@ -31,7 +35,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
               key={element.id}
               data={element}
               innerIndex={++index}
-              selectable={true}
+              selectable={isSelectionEnabled}
             />
           ))}
         </div>

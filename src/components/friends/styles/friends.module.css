@@ -1,0 +1,21 @@
+.friendsPanel{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 150px;
+    height: 100%;
+    border: 3px dotted #aaaaaa;
+    border-radius: 10px;
+    padding: 15% 5px 5px;
+}
+
+.friendSearchContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input{
+    font-size: 18px;
+    line-height: 18px;
+}

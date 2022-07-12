@@ -9,6 +9,8 @@ import { observer } from "mobx-react-lite";
 
 const Image = ({ data, showImage }) => {
   const { translationResult } = useContext(Context);
+  const { isSelectionEnabled } = translationResult;
+
   const { id, isChecked, isMainElement } = data;
 
   const updateIsChecked = (value) => {
@@ -43,11 +45,13 @@ const Image = ({ data, showImage }) => {
             isChecked ? classes.checked : "",
           ])}
         >
-          <CheckBox
-            className={classes.imageFlag}
-            value={isChecked}
-            switchFunction={updateIsChecked}
-          />
+          {isSelectionEnabled ? (
+            <CheckBox
+              className={classes.imageFlag}
+              value={isChecked}
+              switchFunction={updateIsChecked}
+            />
+          ) : null}
           <img
             src={data.thumbnail.url}
             className={getClass([classes.image, commonClasses.unselectable])}
@@ -56,15 +60,17 @@ const Image = ({ data, showImage }) => {
             onClick={showFullscreenImage}
           />
           <img src={loup} className={classes.increase} />
-          <div
-            className={classes.setAsMainButton}
-            onClick={updateIsMainElement}
-            style={{ width: data.thumbnail.width }}
-          >
-            {isMainElement
-              ? "Основное изображение"
-              : "Установить как основное изображение"}
-          </div>
+          {isSelectionEnabled ? (
+            <div
+              className={classes.setAsMainButton}
+              onClick={updateIsMainElement}
+              style={{ width: data.thumbnail.width }}
+            >
+              {isMainElement
+                ? "Основное изображение"
+                : "Установить как основное изображение"}
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

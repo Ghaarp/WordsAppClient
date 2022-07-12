@@ -23,8 +23,8 @@ const CardsList = observer(() => {
       {isLoading ? <LoadingComponent /> : null}
       <div className={classes.cardsList}>
         {cardsData
-          ? cardsData.map((item) => {
-              return <Card data={item} />;
+          ? cardsData.map((item, index) => {
+              return <Card key={index} data={item} />;
             })
           : null}
       </div>

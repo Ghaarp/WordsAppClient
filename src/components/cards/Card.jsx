@@ -1,11 +1,15 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import classes from "../cards/styles/cards.module.css";
 import lock_body from "../../assets/common/lock_body.png";
 import lock_shackle from "../../assets/common/lock_head.png";
 import { getClass } from "../../utils/cssClasses";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../index";
+import { CARD_ROUTE } from "../../utils/consts";
 
 const Card = ({ data }) => {
+  const { translationResult } = useContext(Context);
+
   const [isImageHidden, setIsImageHidden] = useState(true);
   const [isTranslationHidden, setIsTranslationHidden] = useState(true);
 
@@ -22,8 +26,10 @@ const Card = ({ data }) => {
   }, []);
 
   const goToCardPage = useCallback(() => {
-    navigate();
-  }, []);
+    if (!translationResult || !data?.id) return;
+    translationResult.fetchCardData(data.id);
+    navigate(CARD_ROUTE);
+  }, [data]);
 
   return (
     <div className={classes.card}>
@@ -67,7 +73,9 @@ const Card = ({ data }) => {
           <div className={classes.translation}>{data.translation}</div>
         )}
       </div>
-      <div className={classes.fullDataButton}>i</div>
+      <div className={classes.fullDataButton} onClick={goToCardPage}>
+        i
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import classes from "./styles/main.module.css";
 import MainPageButton from "./MainPageButton";
 import imgCreate from "../../assets/button/plus32.png";
@@ -19,9 +19,9 @@ const MainPageAuth = () => {
     navigate(CREATE_ROUTE);
   };
 
-  const showCardsList = () => {
+  const showCardsList = useCallback(() => {
     navigate(CARDS_LIST_ROUTE);
-  };
+  }, []);
 
   return (
     <div className={classes.mainPageAuth}>

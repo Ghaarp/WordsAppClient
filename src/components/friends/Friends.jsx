@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
+import classes from "./styles/friends.module.css";
+import FriendSearchComponent from "./FriendSearchComponent";
 
-const Friends = observer(({ className, children }) => {
+const Friends = observer(({ className }) => {
   const { user, appState } = useContext(Context);
 
   const isAuth = user.isAuth;
@@ -11,7 +13,9 @@ const Friends = observer(({ className, children }) => {
   return (
     <div>
       {isAuth && friendsState ? (
-        <div className={className}>{children}</div>
+        <div className={classes.friendsPanel}>
+          <FriendSearchComponent />
+        </div>
       ) : (
         <div />
       )}

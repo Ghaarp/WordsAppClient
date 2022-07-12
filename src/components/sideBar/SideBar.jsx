@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useCallback, useContext, useEffect, useMemo } from "react";
 import AppButton from "../common/AppButton";
 import { getClass } from "../../utils/cssClasses";
 import classes from "./styles/sideBar.module.css";
 import UserInfo from "./UserInfo";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
-import { CREATE_ROUTE } from "../../utils/consts";
+import { CARDS_LIST_ROUTE, CREATE_ROUTE } from "../../utils/consts";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = observer(({ className, children }) => {
@@ -22,14 +22,18 @@ const SideBar = observer(({ className, children }) => {
     navigate(CREATE_ROUTE);
   };
 
+  const showCardsList = useCallback(() => {
+    navigate(CARDS_LIST_ROUTE);
+  }, []);
+
   return (
     <div>
       {isAuth && sideBarState ? (
         <div className={getClass([className, classes.sideBar])}>
           <UserInfo />
-          <AppButton onClick={createNewCard}>New card</AppButton>
-          <AppButton>Cards list</AppButton>
-          <AppButton>Run test</AppButton>
+          <AppButton onClick={createNewCard}>Создать карточку</AppButton>
+          <AppButton onClick={showCardsList}>Список карточек</AppButton>
+          <AppButton>Пройти тест</AppButton>
         </div>
       ) : (
         <div />

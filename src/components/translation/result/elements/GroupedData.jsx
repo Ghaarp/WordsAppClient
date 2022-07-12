@@ -6,6 +6,7 @@ import TranslationTreeComponent from "../TranslationTreeComponent";
 
 const GroupedData = ({ data, groupName, isImageBlock }) => {
   const { translationResult } = useContext(Context);
+  const { isSelectionEnabled } = translationResult;
   const { id, isChecked } = data;
 
   const updateIsChecked = (value) => {
@@ -16,7 +17,7 @@ const GroupedData = ({ data, groupName, isImageBlock }) => {
   return (
     <HidableGroup
       groupName={groupName}
-      selectable={true}
+      selectable={isSelectionEnabled}
       isChecked={isChecked}
       setIsChecked={updateIsChecked}
     >

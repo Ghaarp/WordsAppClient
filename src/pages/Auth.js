@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, MAINPAGE_ROUTE, REGISTER_ROUTE } from "../utils/consts";
 import { errorHandle } from "../utils/errorHandler";
 import { loginOnServer, registerOnServer } from "../http/user";
+import StyledInput from "../components/common/StyledInput";
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
@@ -48,27 +49,20 @@ const Auth = observer(() => {
       <div className={classes.flexItem}>
         <h1>{isLogin ? "Логин" : "Регистрация"}</h1>
       </div>
-
       <div className={classes.flexItem}>
-        <FormControl
-          className={classes.input}
-          placeholder="Login"
-          aria-label="Login"
+        <StyledInput
+          className={classes.authInput}
+          label={"Логин"}
+          setValue={setLogin}
           type="login"
-          onChange={(event) => {
-            setLogin(event.target.value);
-          }}
         />
       </div>
       <div className={classes.flexItem}>
-        <FormControl
-          className={classes.input}
-          placeholder="Password"
-          aria-label="Password"
+        <StyledInput
+          className={classes.authInput}
+          label={"Пароль"}
+          setValue={setPassword}
           type="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
         />
       </div>
       <div className={classes.flexItem}>

@@ -25,6 +25,7 @@ const TranslationTreeComponent = ({
   selectable,
 }) => {
   const { translationResult } = useContext(Context);
+  const { isSelectionEnabled } = translationResult;
 
   const { id, isChecked } = data;
 
@@ -42,7 +43,7 @@ const TranslationTreeComponent = ({
       ])}
     >
       {/* Selection checkbox */}
-      {selectable ? (
+      {selectable && isSelectionEnabled ? (
         <CheckBox value={isChecked} switchFunction={updateIsChecked} />
       ) : null}
 

@@ -5,40 +5,34 @@ import {
   GET_CARDS_LIST_PATH,
   TRANSLATE_PATH,
 } from "./paths/paths";
-import { CustomResponse } from "./response/CustomResponse";
+import { RequestHelper } from "./helpers/requestHelper";
 
-export const fetchTranslation = async (expression) => {
-  try {
-    const data = await authHost.post(TRANSLATE_PATH, { expression });
-    return new CustomResponse(false, data);
-  } catch (e) {
-    return new CustomResponse(true, e);
-  }
+export const fetchTranslation = async ({ expression }) => {
+  const request = async () => {
+    return await authHost.post(TRANSLATE_PATH, { expression });
+  };
+  return await RequestHelper.makeRequest(request);
 };
 
 export const createCard = async (card) => {
-  try {
-    const data = await authHost.post(CREATE_CARD_PATH, { card });
-    return new CustomResponse(false, data);
-  } catch (e) {
-    return new CustomResponse(true, e);
-  }
+  const request = async () => {
+    return await authHost.post(CREATE_CARD_PATH, { card });
+  };
+
+  return await RequestHelper.makeRequest(request);
 };
 
-export const getCardsData = async () => {
-  try {
-    const data = await authHost.post(GET_CARDS_LIST_PATH);
-    return new CustomResponse(false, data);
-  } catch (e) {
-    return new CustomResponse(true, e);
-  }
+export const getCardsData = async (id) => {
+  const request = async () => {
+    return await authHost.post(GET_CARDS_LIST_PATH);
+  };
+
+  return await RequestHelper.makeRequest(request);
 };
 
-export const getCardData = async (id) => {
-  try {
-    const data = await authHost.get(`${GET_CARD_DATA}${id}`);
-    return new CustomResponse(false, data);
-  } catch (e) {
-    return new CustomResponse(true, e);
-  }
+export const getCardData = async ({ id }) => {
+  const request = async () => {
+    return await authHost.get(`${GET_CARD_DATA}${id}`);
+  };
+  return await RequestHelper.makeRequest(request);
 };

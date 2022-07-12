@@ -4,8 +4,6 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { toJS } from "mobx";
 import TranslationTreeComponent from "./result/TranslationTreeComponent";
-import HidableGroup from "./result/HidableGroup";
-import ImageBlock from "./result/ImageBlock";
 import AppButton from "../common/AppButton";
 import { createCard, fetchTranslation } from "../../http/card";
 import { errorHandle } from "../../utils/errorHandler";
@@ -15,9 +13,10 @@ import LoadingComponent from "../common/LoadingComponent";
 
 const ResultFrame = observer(() => {
   const { translationResult } = useContext(Context);
-  const { isLoading } = translationResult;
+  const { isLoading, isSelectionEnabled } = translationResult;
   const translation = toJS(translationResult.translation);
 
+  console.log(translation);
   const navigate = useNavigate();
 
   const additionalData =
@@ -61,7 +60,7 @@ const ResultFrame = observer(() => {
             <TranslationTreeComponent data={additionalData} />
           ) : null}
 
-          {translation ? (
+          {translation && isSelectionEnabled ? (
             <div className={classes.translationBlock}>
               {<AppButton onClick={saveCard}>Сохранить карточку</AppButton>}
             </div>
