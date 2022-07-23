@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ImageBlock from "../ImageBlock";
-import HidableGroup from "../HidableGroup";
+import HidableGroup from "../../../common/HidableGroup";
 import { Context } from "../../../../index";
 import TranslationTreeComponent from "../TranslationTreeComponent";
 
@@ -20,6 +20,7 @@ const GroupedData = ({ data, groupName, isImageBlock }) => {
       selectable={isSelectionEnabled}
       isChecked={isChecked}
       setIsChecked={updateIsChecked}
+      isHiddenByDefault={true}
     >
       {isImageBlock ? (
         <ImageBlock data={data} />

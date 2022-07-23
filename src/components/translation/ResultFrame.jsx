@@ -48,8 +48,11 @@ const ResultFrame = observer(() => {
         <LoadingComponent />
       ) : (
         <div>
-          {translation && translation.data && translation.data.translation ? (
+          {translation?.data?.translation && translation?.data?.original ? (
             <div className={classes.translationBlock}>
+              <div className={classes.original}>
+                {`${translation.data.original}:`}
+              </div>
               <div className={classes.translation}>
                 {translation.data.translation}
               </div>

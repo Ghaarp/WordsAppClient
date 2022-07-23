@@ -9,7 +9,7 @@ import { CARDS_LIST_ROUTE, CREATE_ROUTE } from "../../utils/consts";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = observer(({ className, children }) => {
-  const { user, appState, translationResult } = useContext(Context);
+  const { user, appState, translationResult, cards } = useContext(Context);
 
   const isAuth = user.isAuth;
   const sideBarState = appState.sideBar;
@@ -23,6 +23,7 @@ const SideBar = observer(({ className, children }) => {
   };
 
   const showCardsList = useCallback(() => {
+    cards.updateList();
     navigate(CARDS_LIST_ROUTE);
   }, []);
 

@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.translation{
+.translationBlock .translation, .translationBlock .original{
     display: block;
     font-size: 36px;
     font-weight: bold;
@@ -33,4 +33,14 @@
     box-sizing: content-box;
     line-height: 30px;
     vertical-align: top;
+}
+
+.translationBlock .translation{
+    font-style: italic;
+    padding-left: 10px;
+}
+
+.translationBlock .original
+{
+
 }

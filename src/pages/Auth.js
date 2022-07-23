@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import classes from "./styles/auth.module.css";
@@ -11,7 +11,7 @@ import { loginOnServer, registerOnServer } from "../http/user";
 import StyledInput from "../components/common/StyledInput";
 
 const Auth = observer(() => {
-  const { user } = useContext(Context);
+  const { user, friends } = useContext(Context);
   if (user.isAuth) user.logOut();
 
   const [login, setLogin] = useState();
@@ -22,7 +22,7 @@ const Auth = observer(() => {
 
   const navigate = useNavigate();
 
-  const loginOrRegister = async () => {
+  const loginOrRegister = useCallback(async () => {
     try {
       const res = isLogin
         ? await loginOnServer(login, password)
@@ -38,11 +38,12 @@ const Auth = observer(() => {
 
       const token = res.response.data;
       user.updateToken(token);
+      friends.setNeedUpdate(true);
       navigate(MAINPAGE_ROUTE);
     } catch (e) {
       console.log(e.response.data.message);
     }
-  };
+  }, [login, password]);
 
   return (
     <div className={classes.authContainer}>

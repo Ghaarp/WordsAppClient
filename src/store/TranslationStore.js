@@ -129,7 +129,6 @@ export class TranslationStore {
       this.setIsLoading,
       this
     );
-    console.log(res);
     const translationData = res?.response?.data;
     this.setTranslation(translationData);
   }

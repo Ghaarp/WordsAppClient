@@ -20,6 +20,7 @@ const MainPageAuth = () => {
   };
 
   const showCardsList = useCallback(() => {
+    cards.updateList();
     navigate(CARDS_LIST_ROUTE);
   }, []);
 

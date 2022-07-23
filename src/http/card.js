@@ -2,6 +2,7 @@ import { authHost } from "./index";
 import {
   CREATE_CARD_PATH,
   GET_CARD_DATA,
+  GET_CARD_DATA_PATH,
   GET_CARDS_LIST_PATH,
   TRANSLATE_PATH,
 } from "./paths/paths";
@@ -32,7 +33,7 @@ export const getCardsData = async (id) => {
 
 export const getCardData = async ({ id }) => {
   const request = async () => {
-    return await authHost.get(`${GET_CARD_DATA}${id}`);
+    return await authHost.get(`${GET_CARD_DATA_PATH}${id}`);
   };
   return await RequestHelper.makeRequest(request);
 };

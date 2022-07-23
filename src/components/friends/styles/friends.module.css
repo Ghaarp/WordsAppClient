@@ -1,8 +1,77 @@
+.cardButton{
+    position: relative;
+    height: 24px;
+    width: 24px;
+    border: 1px solid goldenrod;
+    border-radius: 6px;
+    transition: border-color .3s;
+}
+
+.buttonAccept::after{
+    content: "";
+    position: absolute;
+    left: 7px;
+    right: auto;
+    top: 2px;
+    bottom: auto;
+    border: 3px solid goldenrod;
+    border-top: 0;
+    border-left: 0;
+    height: 14px;
+    width: 8px;
+    transform: rotate(40deg);
+    transition: border-color .3s, transform .3s;
+}
+
+.buttonAccept:hover{
+    border-color: green;
+}
+
+.buttonAccept:hover:after{
+    border-color: green;
+    transform: rotate(40deg) scale(1.2);
+}
+
+.buttonAccept:active{
+    background-color: green;
+}
+
+.buttonCancel:after{
+    content: "X";
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: goldenrod;
+    left: 4px;
+    right: auto;
+    top: -5px;
+    bottom: auto;
+    transition: color .3s, transform .3s;
+}
+
+.buttonCancel:hover{
+    border-color: red;
+}
+
+.buttonCancel:hover:after{
+    color: red;
+    transform: scale(1.15);
+}
+
+.buttonCancel:active{
+    background-color: red;
+}
+
+.buttonAccept:active:after, .buttonCancel:active:after{
+    border-color: #111111;
+    color: #111111;
+}
+
 .friendsPanel{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 150px;
+    width: 200px;
     height: 100%;
     border: 3px dotted #aaaaaa;
     border-radius: 10px;
@@ -15,7 +84,61 @@
     gap: 5px;
 }
 
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerButtons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
 .input{
     font-size: 18px;
     line-height: 18px;
+}
+
+.error{
+    display: block;
+    font-size: 11px;
+    color: deeppink;
+    line-height: 14px;
+    text-align: center;
+}
+
+.login{
+    display: block;
+    color: goldenrod;
+    text-align: left;
+
+}
+
+.friendCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+    border: 1px solid peru;
+    border-radius: 5px;
+    padding: 5px 3px;
+    margin-bottom: 8px;
+    box-shadow: 0px 1px 5px peru ;
+}
+
+.optionContainer{
+    display: flex;
+    gap: 4px;
+}
+
+.optionLabel{
+    font-size: 12px;
+    line-height: 12px;
+    color: goldenrod;
+}
+
+.checkBoxContainer{
+    margin-top: auto;
+    margin-bottom: auto;
 }

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import classes from "./styles/tree.module.css";
 import { getClass } from "../../../utils/cssClasses";
-import HidableGroup from "./HidableGroup";
 import CheckBox from "./elements/CheckBox";
 import ElementIndex from "./elements/ElementIndex";
 import TagsList from "./elements/TagsList";
@@ -14,7 +13,6 @@ import TranslationsList from "./elements/TranslationsList";
 import SynonymGroups from "./elements/SynonymGroups";
 import ItemsContainer from "./elements/ItemsContainer";
 import IndexableItemsContainer from "./elements/IndexableItemsContainer";
-import ImageBlock from "./ImageBlock";
 import { Context } from "../../../index";
 import GroupedData from "./elements/GroupedData";
 

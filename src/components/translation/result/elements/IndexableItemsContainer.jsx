@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import classes from "./styles/elements.module.css";
-import HidableGroup from "../HidableGroup";
+import HidableGroup from "../../../common/HidableGroup";
 import TranslationTreeComponent from "../TranslationTreeComponent";
 import { Context } from "../../../../index";
 
@@ -16,6 +16,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
           selectable={isSelectionEnabled}
           isChecked={isChecked}
           setIsChecked={setIsChecked}
+          isHiddenByDefault={true}
         >
           <div className={classes.items}>
             {data.indexableItems.map((element, index) => (
