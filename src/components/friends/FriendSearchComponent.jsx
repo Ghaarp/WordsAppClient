@@ -7,7 +7,7 @@ import { Context } from "../../index";
 import { getClass } from "../../utils/cssClasses";
 import LoadingComponent from "../common/LoadingComponent";
 
-const FriendSearchComponent = observer(() => {
+const FriendSearchComponent = observer(({ className }) => {
   const { friends } = useContext(Context);
   const { successfulOperation, resultMessage, isLoading } = friends;
 
@@ -35,7 +35,7 @@ const FriendSearchComponent = observer(() => {
   );
 
   return (
-    <div className={classes.friendSearchContainer}>
+    <div className={getClass([className, classes.friendSearchContainer])}>
       <StyledInput
         autoFocus={true}
         className={classes.input}

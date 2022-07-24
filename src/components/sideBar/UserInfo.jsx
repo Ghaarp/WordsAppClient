@@ -4,8 +4,9 @@ import classes from "./styles/userInfo.module.css";
 import defaultAvatar from "../../assets/default-ava.png";
 import { useNavigate } from "react-router-dom";
 import { MAINPAGE_ROUTE } from "../../utils/consts";
+import { getClass } from "../../utils/cssClasses";
 
-const UserInfo = () => {
+const UserInfo = ({ className }) => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const UserInfo = () => {
   return (
     <div>
       {isAuth ? (
-        <div className={classes.userInfo}>
+        <div className={getClass([className, classes.userInfo])}>
           <img className={classes.avatar} src={defaultAvatar} />
           <h5>{user.login}</h5>
           <a href="" onClick={logout}>

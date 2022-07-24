@@ -1,0 +1,31 @@
+.item, .itemReversed{
+    animation-timing-function: linear;
+}
+
+.item.entering, .itemReversed.exiting{
+    animation: switchItemOpacity 1s reverse;
+}
+
+.item.entered, .itemReversed.exited{
+    opacity: 1;
+}
+
+.item.exiting, .itemReversed.entering{
+    animation: switchItemOpacity 1s forwards;
+}
+
+.item.exited, .itemReversed.entered{
+    opacity: 0;
+}
+
+@keyframes switchItemOpacity {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}

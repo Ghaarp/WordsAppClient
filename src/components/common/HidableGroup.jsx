@@ -5,6 +5,7 @@ import { getClass } from "../../utils/cssClasses";
 import CheckBox from "../translation/result/elements/CheckBox";
 
 const HidableGroup = ({
+  className,
   groupName,
   isHiddenByDefault,
   children,
@@ -22,6 +23,7 @@ const HidableGroup = ({
   return (
     <div
       className={getClass([
+        className,
         classes.hidableGroup,
         isHidden ? classes.hidden : "",
       ])}

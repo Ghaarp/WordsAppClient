@@ -4,11 +4,36 @@
     justify-content: flex-start;
     gap: 10px;
     align-content: center;
-    min-width: 151px;
+    width: 0;
     height: 100%;
     border-right: 3px dotted #aaaaaa;
 }
 
 .empty{
     height: 10%;
+}
+
+.sideBar.entering{
+    animation: switchItemWidth 1s forwards;
+}
+.sideBar.entered{
+    width: 151px;
+}
+.sideBar.exiting{
+    animation: switchItemWidth 1s reverse;
+}
+.sideBar.exited{
+    width: 0;
+}
+
+@keyframes switchItemWidth {
+    0%{
+        width: 0;
+    }
+    50%{
+        width: 151px;
+    }
+    100%{
+        width: 151px;
+    }
 }

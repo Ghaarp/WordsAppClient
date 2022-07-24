@@ -2,10 +2,13 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import classes from "./styles/friends.module.css";
+import animClasses from "../common/styles/animation.module.css";
 import FriendSearchComponent from "./FriendSearchComponent";
 import { toJS } from "mobx";
 import FriendCard from "./FriendCard";
 import HidableGroup from "../common/HidableGroup";
+import { getClass } from "../../utils/cssClasses";
+import { Transition } from "react-transition-group";
 
 const Friends = observer(({ className }) => {
   const [allLists, setAllLists] = useState([]);
@@ -45,31 +48,46 @@ const Friends = observer(({ className }) => {
   }, [friendList]);
 
   return (
-    <div>
-      {isAuth && friendsState ? (
-        <div className={classes.friendsPanel}>
-          <FriendSearchComponent />
-          {allLists
-            ? allLists.map((listObj, index) => {
-                return listObj && listObj.list && listObj.list.length ? (
-                  <HidableGroup
-                    key={index}
-                    selectable={false}
-                    groupName={listObj.name}
-                    isHiddenByDefault={false}
-                  >
-                    {listObj.list.map((item) => {
-                      return <FriendCard key={item.id} data={item} />;
-                    })}
-                  </HidableGroup>
-                ) : null;
-              })
-            : null}
+    <Transition
+      in={friendsState}
+      timeout={1000}
+      mountOnEnter={true}
+      unmountOnExit={true}
+    >
+      {(state) => (
+        <div>
+          {isAuth ? (
+            <div className={getClass([classes.friendsPanel, classes[state]])}>
+              <FriendSearchComponent
+                className={getClass([animClasses.item, animClasses[state]])}
+              />
+              {allLists
+                ? allLists.map((listObj, index) => {
+                    return listObj && listObj.list && listObj.list.length ? (
+                      <HidableGroup
+                        className={getClass([
+                          animClasses.item,
+                          animClasses[state],
+                        ])}
+                        key={index}
+                        selectable={false}
+                        groupName={listObj.name}
+                        isHiddenByDefault={false}
+                      >
+                        {listObj.list.map((item) => {
+                          return <FriendCard key={item.id} data={item} />;
+                        })}
+                      </HidableGroup>
+                    ) : null;
+                  })
+                : null}
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
-      ) : (
-        <div />
       )}
-    </div>
+    </Transition>
   );
 });
 
