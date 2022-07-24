@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     color: goldenrod;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 4px 25px;
+    border-top: 3px dotted #aaaaaa;
 }
 

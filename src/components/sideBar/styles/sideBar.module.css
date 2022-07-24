@@ -4,7 +4,9 @@
     justify-content: flex-start;
     gap: 10px;
     align-content: center;
-
+    min-width: 151px;
+    height: 100%;
+    border-right: 3px dotted #aaaaaa;
 }
 
 .empty{

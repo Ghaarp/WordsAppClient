@@ -30,3 +30,13 @@
     display: flex;
     justify-content: space-around;
 }
+
+.navLink{
+    display: inline;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.navLink:hover{
+    color:gold;
+}

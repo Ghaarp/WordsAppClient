@@ -1,4 +1,11 @@
 .logo{
     display: block;
     cursor: pointer;
+    color: #aaaaaa;
+    transition: color 0.3s;
+}
+
+.logo:hover{
+    color: goldenrod;
+    text-decoration: underline;
 }

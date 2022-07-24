@@ -14,12 +14,27 @@ const Search = () => {
   const { user } = useContext(Context);
 
   const fetchTranslationResult = useCallback(async () => {
+    if (!expression) return;
     translationResult.translateExpression(expression);
   }, [expression]);
 
+  const onPressEnter = useCallback(
+    (event) => {
+      if (event.code === "Enter") {
+        fetchTranslationResult();
+      }
+    },
+    [expression]
+  );
+
   return (
     <div className={classes.searchContainer}>
-      <StyledInput label={"Введите выражение"} setValue={setExpression} />
+      <StyledInput
+        label={"Введите выражение"}
+        setValue={setExpression}
+        onKeyPress={onPressEnter}
+        autoFocus={true}
+      />
 
       <AppButton
         className={classes.searchButton}

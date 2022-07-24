@@ -4,10 +4,10 @@ import classes from "./styles/app.module.css";
 import { BrowserRouter } from "react-router-dom";
 import AppFrame from "./AppFrame";
 
-const AppContainer = ({ className, children }) => {
+const AppContainer = ({ className }) => {
   return (
     <div className={className}>
-      <AppFrame className={getClass([classes.frame, classes.innerContainer])} />
+      <AppFrame className={getClass([classes.innerContainer])} />
     </div>
   );
 };

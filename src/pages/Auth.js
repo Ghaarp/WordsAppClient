@@ -22,6 +22,8 @@ const Auth = observer(() => {
 
   const navigate = useNavigate();
 
+  console.log("render");
+
   const loginOrRegister = useCallback(async () => {
     try {
       const res = isLogin
@@ -52,6 +54,7 @@ const Auth = observer(() => {
       </div>
       <div className={classes.flexItem}>
         <StyledInput
+          autoFocus={true}
           className={classes.authInput}
           label={"Логин"}
           setValue={setLogin}

@@ -6,7 +6,7 @@ import { Context } from "../index";
 import MainPageLogo from "./mainPage/MainPageLogo";
 import { observer } from "mobx-react-lite";
 
-const NavBar = observer(({ className, children }) => {
+const NavBar = observer(({ className }) => {
   const { user, appState } = useContext(Context);
   const isAuth = user.isAuth;
 

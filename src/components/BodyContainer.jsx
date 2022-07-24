@@ -5,12 +5,12 @@ import classes from "./styles/app.module.css";
 import MainFrame from "./MainFrame";
 import Friends from "./friends/Friends";
 
-const BodyContainer = ({ className, children }) => {
+const BodyContainer = ({ className }) => {
   return (
     <div className={className}>
-      <SideBar className={getClass([classes.frame, classes.side])} />
-      <MainFrame className={getClass([classes.frame, classes.main])} />
-      <Friends className={getClass([classes.frame, classes.friends])} />
+      <SideBar />
+      <MainFrame className={getClass([classes.main])} />
+      <Friends />
     </div>
   );
 };

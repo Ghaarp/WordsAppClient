@@ -42,8 +42,6 @@ const Friends = observer(({ className }) => {
       { name: "Приглашены", list: sort(filter(friendsArray, "1")) },
       { name: "Ожидают", list: sort(filter(friendsArray, "2")) },
     ]);
-
-    console.log(allLists);
   }, [friendList]);
 
   return (
@@ -53,7 +51,6 @@ const Friends = observer(({ className }) => {
           <FriendSearchComponent />
           {allLists
             ? allLists.map((listObj, index) => {
-                console.log(listObj);
                 return listObj && listObj.list && listObj.list.length ? (
                   <HidableGroup
                     key={index}

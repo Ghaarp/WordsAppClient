@@ -20,13 +20,13 @@ const MainPageNotAuth = () => {
       <div className={getClass([classes.mainPageText])}>
         <h5>
           Для использования переводчика нужно{" "}
-          <a href={""} onClick={navToLogin}>
+          <div className={classes.navLink} onClick={navToLogin}>
             войти
-          </a>{" "}
+          </div>{" "}
           или{" "}
-          <a href={""} onClick={navToRegistration}>
+          <div className={classes.navLink} onClick={navToRegistration}>
             зарегистрироваться
-          </a>
+          </div>
           {"."}
         </h5>
       </div>

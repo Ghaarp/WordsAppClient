@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { getClass } from "../../utils/cssClasses";
 import classes from "./styles/common.module.css";
 
-const AppButton = ({ className, children, onClick }) => {
+const AppButton = ({ className, children, onClick, onKeyPress }) => {
   return (
     <button
       className={getClass([className, classes.appButton])}

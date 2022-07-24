@@ -5,12 +5,12 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import BodyContainer from "./BodyContainer";
 
-const AppFrame = ({ className, children }) => {
+const AppFrame = ({ className }) => {
   return (
     <div className={className}>
-      <NavBar className={getClass([classes.frame, classes.nav])} />
-      <BodyContainer className={getClass([classes.frame, classes.body])} />
-      <Footer className={getClass([classes.frame, classes.footer])} />
+      <NavBar />
+      <BodyContainer className={getClass([classes.body])} />
+      <Footer />
     </div>
   );
 };

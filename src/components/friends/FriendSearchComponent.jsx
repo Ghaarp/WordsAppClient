@@ -25,13 +25,24 @@ const FriendSearchComponent = observer(() => {
     friends.removeFriend(friendLogin);
   }, [friendLogin]);
 
+  const onPressEnter = useCallback(
+    (event) => {
+      if (event.code === "Enter") {
+        addFriend();
+      }
+    },
+    [friendLogin]
+  );
+
   return (
     <div className={classes.friendSearchContainer}>
       <StyledInput
+        autoFocus={true}
         className={classes.input}
         label={"Имя"}
         setValue={setFriendLogin}
         type={"friendLogin"}
+        onKeyPress={onPressEnter}
       />
       {successfulOperation ? null : (
         <div className={classes.error}>{resultMessage}</div>
