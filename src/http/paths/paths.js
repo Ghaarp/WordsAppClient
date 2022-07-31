@@ -3,6 +3,7 @@ export const REGISTRATION_PATH = "/user/registration";
 
 export const TRANSLATE_PATH = "/card/findexpressioninfo";
 export const CREATE_CARD_PATH = "/card/createCard";
+export const REMOVE_CARD_PATH = "/card/removeCard";
 export const GET_CARDS_LIST_PATH = "/card/getcardslist";
 export const GET_CARD_DATA_PATH = "/card/getcarddata=";
 

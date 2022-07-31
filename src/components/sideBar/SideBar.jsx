@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useContext } from "react";
 import AppButton from "../common/AppButton";
 import { getClass } from "../../utils/cssClasses";
 import classes from "./styles/sideBar.module.css";
@@ -24,16 +18,16 @@ const SideBar = observer(() => {
 
   const navigate = useNavigate();
 
-  const createNewCard = () => {
+  const createNewCard = useCallback(() => {
     if (!translationResult) return;
     translationResult.reset();
     navigate(CREATE_ROUTE);
-  };
+  }, [translationResult, navigate]);
 
   const showCardsList = useCallback(() => {
-    cards.updateList();
+    cards.reset();
     navigate(CARDS_LIST_ROUTE);
-  }, []);
+  }, [navigate]);
 
   return (
     <Transition
@@ -63,6 +57,7 @@ const SideBar = observer(() => {
               </AppButton>
               <AppButton
                 className={getClass([animClasses[state], animClasses.item])}
+                disabled
               >
                 Пройти тест
               </AppButton>

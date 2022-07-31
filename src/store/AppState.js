@@ -7,6 +7,7 @@ export class AppState {
     makeAutoObservable(this);
   }
 
+  //Setters
   setSideBar(value) {
     this._sideBar = value;
   }
@@ -14,12 +15,18 @@ export class AppState {
   setFriends(value) {
     this._friends = value;
   }
-
+  //Getters
   get friends() {
     return this._friends;
   }
 
   get sideBar() {
     return this._sideBar;
+  }
+
+  //Public methods
+  hideAll() {
+    this.setSideBar(false);
+    this.setFriends(false);
   }
 }

@@ -1,7 +1,7 @@
 import { action, computed, makeObservable, observable } from "mobx";
 import { TranslationHelper } from "../helpers/translationHelper";
-import { fetchTranslation, getCardData } from "../http/card";
-import { CardsHttpHelper } from "../helpers/cardsHttpHelper";
+import { createCard, fetchTranslation, getCardData } from "../http/card";
+import { RequestHelper } from "../http/helpers/requestHelper";
 
 export const Operations = { TRANSLATE: 1, SHOW: 2 };
 
@@ -11,8 +11,9 @@ export class TranslationStore {
   _translationOriginal;
   _operation;
   _isSelectionEnabled = false;
+  _contextStore;
 
-  constructor() {
+  constructor(contextStore) {
     this._setDefaultData();
 
     makeObservable(this, {
@@ -25,6 +26,35 @@ export class TranslationStore {
       setIsLoading: action,
       _setDefaultData: action,
     });
+
+    this._contextStore = contextStore;
+  }
+
+  //Setters
+  setTranslation(result) {
+    this._isLoading = false;
+    this._translationOriginal =
+      this._operation === Operations.TRANSLATE
+        ? new TranslationHelper(result).addRequiredFields()
+        : result;
+    this._updateTranslation();
+  }
+
+  setIsLoading(value) {
+    this._isLoading = value;
+  }
+
+  //Getters
+  get translation() {
+    return this._translation;
+  }
+
+  get isLoading() {
+    return this._isLoading;
+  }
+
+  get isSelectionEnabled() {
+    return this._isSelectionEnabled;
   }
 
   //Private methods
@@ -51,34 +81,6 @@ export class TranslationStore {
         this._isSelectionEnabled = false;
         break;
     }
-  }
-
-  //Setters
-
-  setTranslation(result) {
-    this._isLoading = false;
-    this._translationOriginal =
-      this._operation === Operations.TRANSLATE
-        ? new TranslationHelper(result).addRequiredFields()
-        : result;
-    this._updateTranslation();
-  }
-
-  setIsLoading(value) {
-    this._isLoading = value;
-  }
-
-  //Getters
-  get translation() {
-    return this._translation;
-  }
-
-  get isLoading() {
-    return this._isLoading;
-  }
-
-  get isSelectionEnabled() {
-    return this._isSelectionEnabled;
   }
 
   //Public methods
@@ -108,26 +110,39 @@ export class TranslationStore {
     this.reset();
     this._setOperation(Operations.TRANSLATE);
 
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       fetchTranslation,
       { expression },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
-    console.log(res);
     const translationData = res?.response?.data;
+    console.log(translationData);
     this.setTranslation(translationData);
+  }
+
+  async createNewCard() {
+    const cardJSON = this.formCardJSON();
+    return await RequestHelper.makeRequest(
+      createCard,
+      { cardJSON },
+      this.setIsLoading,
+      this,
+      this._contextStore.error
+    );
   }
 
   async fetchCardData(id) {
     this.reset();
     this._setOperation(Operations.SHOW);
 
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       getCardData,
       { id },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
     const translationData = res?.response?.data;
     this.setTranslation(translationData);

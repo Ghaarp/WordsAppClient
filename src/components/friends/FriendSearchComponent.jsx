@@ -5,11 +5,10 @@ import AppButton from "../common/AppButton";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { getClass } from "../../utils/cssClasses";
-import LoadingComponent from "../common/LoadingComponent";
 
 const FriendSearchComponent = observer(({ className }) => {
   const { friends } = useContext(Context);
-  const { successfulOperation, resultMessage, isLoading } = friends;
+  const { successfulOperation, resultMessage } = friends;
 
   const [friendLogin, setFriendLogin] = useState();
 
@@ -17,13 +16,7 @@ const FriendSearchComponent = observer(({ className }) => {
     if (!friendLogin) return;
 
     friends.inviteFriend(friendLogin);
-  }, [friendLogin]);
-
-  const removeFriend = useCallback(() => {
-    if (!friendLogin) return;
-
-    friends.removeFriend(friendLogin);
-  }, [friendLogin]);
+  }, [friends, friendLogin]);
 
   const onPressEnter = useCallback(
     (event) => {
@@ -31,7 +24,7 @@ const FriendSearchComponent = observer(({ className }) => {
         addFriend();
       }
     },
-    [friendLogin]
+    [addFriend]
   );
 
   return (
@@ -48,7 +41,6 @@ const FriendSearchComponent = observer(({ className }) => {
         <div className={classes.error}>{resultMessage}</div>
       )}
       <AppButton onClick={addFriend}>Добавить</AppButton>
-      {isLoading ? <LoadingComponent /> : null}
     </div>
   );
 });

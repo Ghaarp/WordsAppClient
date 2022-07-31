@@ -1,18 +1,17 @@
-import { fetchTranslation } from "../http/card";
 import { errorHandle } from "../utils/errorHandler";
 
 export class CardsHttpHelper {
-  static async fetchData(fetchFunction, args, setIsLoading, contextObject) {
+  static async makeRequest(
+    callback,
+    args,
+    setIsLoading,
+    contextObject,
+    errorContextObject
+  ) {
     contextObject.setIsLoading(true);
     try {
-      const res = await fetchFunction(args);
-      if (
-        errorHandle(
-          res,
-          () => {},
-          () => {}
-        )
-      ) {
+      const res = await callback(args);
+      if (errorHandle(res, errorContextObject)) {
         contextObject.setIsLoading(false);
         return;
       }

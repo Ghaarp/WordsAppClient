@@ -1,39 +1,33 @@
 import { authHost } from "./index";
 import {
   CREATE_CARD_PATH,
-  GET_CARD_DATA,
   GET_CARD_DATA_PATH,
   GET_CARDS_LIST_PATH,
+  REMOVE_CARD_PATH,
   TRANSLATE_PATH,
 } from "./paths/paths";
-import { RequestHelper } from "./helpers/requestHelper";
 
 export const fetchTranslation = async ({ expression }) => {
-  const request = async () => {
-    return await authHost.post(TRANSLATE_PATH, { expression });
-  };
-  return await RequestHelper.makeRequest(request);
+  console.log("fetchTranslation");
+  return await authHost.post(TRANSLATE_PATH, { expression });
 };
 
-export const createCard = async (card) => {
-  const request = async () => {
-    return await authHost.post(CREATE_CARD_PATH, { card });
-  };
-
-  return await RequestHelper.makeRequest(request);
+export const createCard = async ({ cardJSON }) => {
+  console.log("createCard");
+  return await authHost.post(CREATE_CARD_PATH, { card: cardJSON });
 };
 
-export const getCardsData = async (id) => {
-  const request = async () => {
-    return await authHost.post(GET_CARDS_LIST_PATH);
-  };
+export const removeCard = async ({ id }) => {
+  console.log("removeCard");
+  return await authHost.post(REMOVE_CARD_PATH, { cardId: id });
+};
 
-  return await RequestHelper.makeRequest(request);
+export const getCardsData = async ({ count, page }) => {
+  console.log("getCardsData");
+  return await authHost.post(GET_CARDS_LIST_PATH, { count, page });
 };
 
 export const getCardData = async ({ id }) => {
-  const request = async () => {
-    return await authHost.get(`${GET_CARD_DATA_PATH}${id}`);
-  };
-  return await RequestHelper.makeRequest(request);
+  console.log("getCardData");
+  return await authHost.get(`${GET_CARD_DATA_PATH}${id}`);
 };

@@ -1,10 +1,8 @@
-export function errorHandle(res, setErrorMessage, setShowError) {
+export function errorHandle(res, errorContextObject) {
   const { isError, errorMessage, status } = res;
-  console.log(isError);
   if (isError) {
+    errorContextObject.addError(res);
     console.log(`${status ? status : ""} (${errorMessage})`);
-    setErrorMessage(`${status ? status : ""} (${errorMessage})`);
-    setShowError(true);
     return true;
   }
   return false;

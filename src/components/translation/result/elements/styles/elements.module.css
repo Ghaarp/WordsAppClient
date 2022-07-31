@@ -8,7 +8,9 @@
     gap: 3px;
 }
 
-.translations{}
+.translations{
+
+}
 
 .translations .items{
     flex-direction: column;
@@ -23,6 +25,7 @@
     column-gap: 10px;
     flex-direction: column;
     align-content: stretch;
+    padding-top: 5px;
 }
 
 .index{
@@ -66,9 +69,10 @@
 }
 
 .textTranslation{
-    display: inline;
-    font-size: 16px;
-    line-height: 12px;
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    line-height: 10px;
     font-weight: bold;
     margin-top: 0;
     padding-bottom: 6px;
@@ -117,27 +121,20 @@
     flex-direction: column;
 }
 
-.checkbox{
-    padding: 0;
-    margin: 0;
-    height: 15px;
-    width: 15px;
-    min-width: 15px;
-    min-height: 15px;
-    border: 2px solid goldenrod;
+.fix{
     display: flex;
-    justify-content: center;
-    align-content: center;
+    align-items: flex-start;
+    cursor: pointer;
 }
 
-.checkbox.checked::after{
+.fixHeader{
+    margin-right: 10px;
     color: goldenrod;
-    content: " ";
-    height: 9px;
-    width: 7px;
-    border-color: goldenrod;
-    border-bottom: 3px solid;
-    border-right: 3px solid;
-    font-size: 16px;
-    transform: rotate(45deg);
+    font-size: 18px;
+    line-height: 20px;
+    font-style: italic;
+}
+
+.fix .tag{
+    font-size: 12px;
 }

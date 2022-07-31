@@ -9,12 +9,13 @@ import FriendCard from "./FriendCard";
 import HidableGroup from "../common/HidableGroup";
 import { getClass } from "../../utils/cssClasses";
 import { Transition } from "react-transition-group";
+import LoadingComponent from "../common/LoadingComponent";
 
 const Friends = observer(({ className }) => {
   const [allLists, setAllLists] = useState([]);
 
   const { user, appState, friends } = useContext(Context);
-  const { needUpdate, friendList } = friends;
+  const { needUpdate, friendList, isLoading } = friends;
 
   const isAuth = user.isAuth;
   const friendsState = appState.friends;
@@ -23,7 +24,7 @@ const Friends = observer(({ className }) => {
 
   useEffect(() => {
     if (needUpdate) friends.fetchFriendList();
-  }, [needUpdate]);
+  }, [friends, needUpdate]);
 
   const filter = useCallback((list, friendType) => {
     return list.filter((item) => item?.type === friendType);
@@ -37,6 +38,10 @@ const Friends = observer(({ className }) => {
     });
   }, []);
 
+  const updateFriends = useCallback(() => {
+    friends.fetchFriendList();
+  }, [friends]);
+
   useEffect(() => {
     if (!friendsArray) return;
 
@@ -45,7 +50,7 @@ const Friends = observer(({ className }) => {
       { name: "Приглашены", list: sort(filter(friendsArray, "1")) },
       { name: "Ожидают", list: sort(filter(friendsArray, "2")) },
     ]);
-  }, [friendList]);
+  }, [friendList, sort, filter]);
 
   return (
     <Transition
@@ -53,6 +58,7 @@ const Friends = observer(({ className }) => {
       timeout={1000}
       mountOnEnter={true}
       unmountOnExit={true}
+      onEntering={updateFriends}
     >
       {(state) => (
         <div>
@@ -81,6 +87,7 @@ const Friends = observer(({ className }) => {
                     ) : null;
                   })
                 : null}
+              {isLoading ? <LoadingComponent /> : null}
             </div>
           ) : (
             <div />

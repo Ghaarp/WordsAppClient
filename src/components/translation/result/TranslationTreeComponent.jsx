@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import classes from "./styles/tree.module.css";
 import { getClass } from "../../../utils/cssClasses";
-import CheckBox from "./elements/CheckBox";
+import CheckBox from "../../common/CheckBox";
 import ElementIndex from "./elements/ElementIndex";
 import TagsList from "./elements/TagsList";
 import Tag from "./elements/Tag";

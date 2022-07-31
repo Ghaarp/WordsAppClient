@@ -1,0 +1,85 @@
+.errorBar{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 100%;
+    background-color: chocolate;
+    color: #111111;
+}
+
+.errorText{
+    font-size: 24px;
+}
+
+.buttonClose{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    right: 15px;
+    height: 16px;
+    width: 16px;
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
+.buttonClose:hover{
+    transform: scale(1.2);
+}
+
+.buttonClose:active{
+    transform: scale(0.9);
+    color: honeydew;
+}
+
+.errorBar.entering{
+    height: 0;
+    color: rgba(17, 17, 17, 0);
+    animation: popup .3s linear forwards;
+}
+.errorBar.entered{
+    animation: colorLight .5s linear forwards;
+}
+.errorBar.exiting{
+    height: 35px;
+    animation: popup .3s linear reverse;
+}
+.errorBar.exited{
+    height: 0;
+    color: rgba(17, 17, 17, 0);
+}
+
+@keyframes popup{
+    0%{
+        height: 0;
+        color: rgba(17, 17, 17, 0);
+    }
+    50%{
+        height: 35px;
+        color: rgba(17, 17, 17, 0);
+    }
+    100%{
+        height: 35px;
+        color: #111111;
+    }
+}
+
+@keyframes colorLight {
+    0%{
+        color: #111111;
+    }
+    25%{
+        color: honeydew;
+    }
+    50%{
+        color: #111111;
+    }
+    75%{
+        color: honeydew;
+    }
+    100%{
+        color: #111111;
+    }
+}

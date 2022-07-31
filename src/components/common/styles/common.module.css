@@ -110,3 +110,56 @@
 .input:focus{
     color: #aaaaaa;
 }
+
+.navLink{
+    display: inline;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.navLink:hover{
+    color:gold;
+}
+
+.checkbox{
+    padding: 0;
+    margin: 0;
+    height: 15px;
+    width: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    border: 2px solid goldenrod;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.checkBoxContainer{
+    display: flex;
+    align-items: center;
+}
+
+.checkBoxContainer .title{
+    color: goldenrod;
+    font-size: 20px;
+    line-height: 24px;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.checkbox.checked::after{
+    color: goldenrod;
+    content: " ";
+    height: 9px;
+    width: 7px;
+    border-color: goldenrod;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    font-size: 16px;
+    transform: rotate(45deg);
+}
+
+.disabled{
+    color: #aaaaaa;
+    pointer-events: none;
+}

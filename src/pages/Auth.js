@@ -1,18 +1,20 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import classes from "./styles/auth.module.css";
-import { FormControl } from "react-bootstrap";
+import classesCommon from "../components/common/styles/common.module.css";
 import AppButton from "../components/common/AppButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, MAINPAGE_ROUTE, REGISTER_ROUTE } from "../utils/consts";
-import { errorHandle } from "../utils/errorHandler";
-import { loginOnServer, registerOnServer } from "../http/user";
 import StyledInput from "../components/common/StyledInput";
 
 const Auth = observer(() => {
-  const { user, friends } = useContext(Context);
-  if (user.isAuth) user.logOut();
+  const { user, appState } = useContext(Context);
+
+  useEffect(() => {
+    if (user.isAuth) user.logOut();
+    appState.hideAll();
+  }, [appState, user]);
 
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();
@@ -22,30 +24,11 @@ const Auth = observer(() => {
 
   const navigate = useNavigate();
 
-  console.log("render");
-
   const loginOrRegister = useCallback(async () => {
-    try {
-      const res = isLogin
-        ? await loginOnServer(login, password)
-        : await registerOnServer(login, password);
-      if (
-        errorHandle(
-          res,
-          () => {},
-          () => {}
-        )
-      )
-        return;
+    const res = await user.loginOrRegister(isLogin, login, password);
 
-      const token = res.response.data;
-      user.updateToken(token);
-      friends.setNeedUpdate(true);
-      navigate(MAINPAGE_ROUTE);
-    } catch (e) {
-      console.log(e.response.data.message);
-    }
-  }, [login, password]);
+    if (res) navigate(MAINPAGE_ROUTE);
+  }, [navigate, user, login, password, isLogin]);
 
   return (
     <div className={classes.authContainer}>
@@ -75,16 +58,24 @@ const Auth = observer(() => {
             <h5>{isLogin ? "Войти" : "Зарегистрировать"}</h5>
           </AppButton>
           <div className={classes.links}>
-            <h5>{isLogin ? "Нет аккаунта? " : "Уже есть аккаунт?"}</h5>
+            <h5>{isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?"}</h5>
             <h5>
               {isLogin ? (
-                <a href="" onClick={() => navigate(REGISTER_ROUTE)}>
+                <div
+                  className={classesCommon.navLink}
+                  style={{ marginLeft: "5px" }}
+                  onClick={() => navigate(REGISTER_ROUTE)}
+                >
                   Зарегистрировать
-                </a>
+                </div>
               ) : (
-                <a href="" onClick={() => navigate(LOGIN_ROUTE)}>
+                <div
+                  className={classesCommon.navLink}
+                  style={{ marginLeft: "5px" }}
+                  onClick={() => navigate(LOGIN_ROUTE)}
+                >
                   Войти
-                </a>
+                </div>
               )}
             </h5>
           </div>

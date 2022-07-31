@@ -1,5 +1,6 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import classes from "../cards/styles/cards.module.css";
+import classesCommon from "../../styles/common.module.css";
 import lock_body from "../../assets/common/lock_body.png";
 import lock_shackle from "../../assets/common/lock_head.png";
 import { getClass } from "../../utils/cssClasses";
@@ -8,7 +9,7 @@ import { Context } from "../../index";
 import { CARD_ROUTE } from "../../utils/consts";
 
 const Card = ({ data }) => {
-  const { translationResult } = useContext(Context);
+  const { translationResult, cards } = useContext(Context);
 
   const [isImageHidden, setIsImageHidden] = useState(true);
   const [isTranslationHidden, setIsTranslationHidden] = useState(true);
@@ -26,10 +27,17 @@ const Card = ({ data }) => {
   }, []);
 
   const goToCardPage = useCallback(() => {
+    console.log("trig");
     if (!translationResult || !data?.id) return;
     translationResult.fetchCardData(data.id);
     navigate(CARD_ROUTE);
   }, [data]);
+
+  const removeCard = () => {
+    if (!data) return;
+
+    cards.removeCard(data.id);
+  };
 
   return (
     <div className={classes.card}>
@@ -43,7 +51,9 @@ const Card = ({ data }) => {
             onClick={showImage}
           >
             {isImageHidden ? (
-              <div className={classes.lock}>
+              <div
+                className={getClass([classes.lock, classesCommon.unselectable])}
+              >
                 <img
                   className={classes.lockShackle}
                   src={lock_shackle}
@@ -73,8 +83,13 @@ const Card = ({ data }) => {
           <div className={classes.translation}>{data.translation}</div>
         )}
       </div>
-      <div className={classes.fullDataButton} onClick={goToCardPage}>
-        i
+      <div className={classes.cardButtonPanel}>
+        <div className={classes.removeCardButton} onClick={removeCard}>
+          X
+        </div>
+        <div className={classes.infoButton} onClick={goToCardPage}>
+          <div className={classes.buttonText}>i</div>
+        </div>
       </div>
     </div>
   );

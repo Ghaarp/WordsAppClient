@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import { CardsHttpHelper } from "../helpers/cardsHttpHelper";
 import {
   fetchFriendList,
   inviteFriend,
@@ -7,25 +6,21 @@ import {
   removeFriend,
   removeFriendshipRow,
 } from "../http/friend";
+import { RequestHelper } from "../http/helpers/requestHelper";
 
 export class FriendsStore {
-  constructor() {
+  constructor(contextStore) {
     this.reset();
     makeAutoObservable(this);
+    this._contextStore = contextStore;
   }
 
-  reset() {
-    this._friendList = [];
-    this._resultMessage = "";
-    this._successfulOperation = false;
-    this._isLoading = false;
-    this._needUpdate = true;
-  }
-
+  //Setters
   setFriendList(value) {
     this._friendList = value;
   }
 
+  //Getters
   setResultMessage(value) {
     this._resultMessage = value;
   }
@@ -62,41 +57,59 @@ export class FriendsStore {
     return this._needUpdate;
   }
 
+  //Public methods
+  reset() {
+    this._friendList = [];
+    this._resultMessage = "";
+    this._successfulOperation = false;
+    this._isLoading = false;
+    this._needUpdate = false;
+  }
+
   async inviteFriend(login) {
-    this.reset();
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       inviteFriend,
       { login },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
 
+    if (res.isError) return false;
+
+    this.reset();
     this.setSuccessfulOperation(res?.response?.data?.successfulOperation);
     this.setNeedUpdate(true);
   }
 
   async removeFriend(id) {
-    this.reset();
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       removeFriend,
       { id },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
 
+    if (res.isError) return false;
+
+    this.reset();
     this.setSuccessfulOperation(res?.response?.data?.successfulOperation);
     this.setNeedUpdate(true);
   }
 
   async removeFriendshipRow(id) {
-    this.reset();
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       removeFriendshipRow,
       { id },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
 
+    if (res.isError) return false;
+
+    this.reset();
     this.setSuccessfulOperation(res?.response?.data?.successfulOperation);
     this.setNeedUpdate(true);
   }
@@ -105,25 +118,29 @@ export class FriendsStore {
     this.reset();
     this.setNeedUpdate(false);
 
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       fetchFriendList,
       {},
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
 
     this.setFriendList(res?.response?.data);
   }
 
   async optionShareCards(id, value) {
-    this.reset();
-    const res = await CardsHttpHelper.fetchData(
+    const res = await RequestHelper.makeRequest(
       optionShareCards,
       { friendId: id, shareCards: value },
       this.setIsLoading,
-      this
+      this,
+      this._contextStore.error
     );
 
+    if (res.isError) return false;
+
+    this.reset();
     this.setSuccessfulOperation(res?.response?.data?.successfulOperation);
     this.setNeedUpdate(true);
   }

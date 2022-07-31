@@ -1,12 +1,15 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { getClass } from "../../utils/cssClasses";
 import classes from "./styles/common.module.css";
 
-const AppButton = ({ className, children, onClick, onKeyPress }) => {
+const AppButton = ({ className, children, onClick, disabled }) => {
   return (
     <button
-      className={getClass([className, classes.appButton])}
+      className={getClass([
+        className,
+        classes.appButton,
+        disabled && classes.disabled,
+      ])}
       onClick={onClick}
     >
       {children}

@@ -10,9 +10,10 @@ import { errorHandle } from "../../utils/errorHandler";
 import { useNavigate } from "react-router-dom";
 import { MAINPAGE_ROUTE } from "../../utils/consts";
 import LoadingComponent from "../common/LoadingComponent";
+import Fix from "./result/elements/Fix";
 
 const ResultFrame = observer(() => {
-  const { translationResult } = useContext(Context);
+  const { translationResult, error } = useContext(Context);
   const { isLoading, isSelectionEnabled } = translationResult;
   const translation = toJS(translationResult.translation);
 
@@ -25,19 +26,8 @@ const ResultFrame = observer(() => {
       : undefined;
 
   const saveCard = async () => {
-    const card = translationResult.formCardJSON();
-    console.log(card);
-    const res = await createCard(card);
-    if (
-      errorHandle(
-        res,
-        () => {},
-        () => {}
-      )
-    ) {
-      return;
-    }
-    navigate(MAINPAGE_ROUTE);
+    const res = await translationResult.createNewCard();
+    if (!res.isError) navigate(MAINPAGE_ROUTE);
   };
 
   const { imageData } = translation ? translation : {};
@@ -48,6 +38,7 @@ const ResultFrame = observer(() => {
         <LoadingComponent />
       ) : (
         <div>
+          {translation?.data?.fix ? <Fix data={translation.data.fix} /> : null}
           {translation?.data?.translation && translation?.data?.original ? (
             <div className={classes.translationBlock}>
               <div className={classes.original}>

@@ -13,16 +13,16 @@ const MainPageAuth = () => {
 
   const navigate = useNavigate();
 
-  const createNewCard = () => {
+  const createNewCard = useCallback(() => {
     if (!translationResult) return;
     translationResult.reset();
     navigate(CREATE_ROUTE);
-  };
+  }, [translationResult, navigate]);
 
   const showCardsList = useCallback(() => {
-    cards.updateList();
+    cards.reset();
     navigate(CARDS_LIST_ROUTE);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className={classes.mainPageAuth}>
@@ -34,7 +34,7 @@ const MainPageAuth = () => {
         <MainPageButton imgSource={imgList} onClick={showCardsList}>
           <h5>Просмотреть карточки</h5>
         </MainPageButton>
-        <MainPageButton imgSource={imgTest}>
+        <MainPageButton imgSource={imgTest} disabled>
           <h5>
             Пройти
             <br />

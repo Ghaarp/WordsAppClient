@@ -1,3 +1,12 @@
+.cardsListComponent{
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    max-height: 100%;
+    gap: 10px;
+}
+
 .cardsListContainer{
     overflow-y: scroll;
     display: flex;
@@ -7,8 +16,8 @@
     flex-grow: 1;
     flex-shrink: 1;
     max-height: 100%;
-}
 
+}
 
 .cardsListContainer::-webkit-scrollbar{
     background-color: #111111;
@@ -21,7 +30,7 @@
 
 .cardsList{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 260px);
     justify-content: space-around;
     grid-gap: 10px;
     flex-wrap: wrap;
@@ -35,7 +44,7 @@
     border: 2px solid goldenrod;
     border-radius: 10px;
     height: 100px;
-    width: 250px;
+    width: 260px;
 }
 
 .imgContainer{
@@ -128,24 +137,68 @@
     border-radius: 4px;
 }
 
-.fullDataButton{
-    display: block;
-    position:absolute;
-    top: 0;
-    right: 0;
-    height: 18px;
+.filtersContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 2px solid goldenrod;
+    border-radius: 4%;
+}
+
+.cardButtonPanel{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
     width: 18px;
-    color: #111111;
-    background-color: goldenrod;
+    height: 100%;
+    border-left: 1px solid goldenrod;
+}
+
+.infoButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: goldenrod;
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s;
+    flex-grow: 1;
+    flex-shrink: 1;
+    line-height: 100%;
+}
+
+.infoButton .buttonText{
+    display: block;
+}
+
+.infoButton:hover{
+    font-size: 25px;
+}
+
+.removeCardButton{
+    display: block;
+    height: 16px;
+    width: 16px;
+    color: goldenrod;
+    background-color: #111111;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 14px;
-    border: 1px solid goldenrod;
-    border-bottom-left-radius: 3px;
+    border-bottom: 1px solid goldenrod;
     transition: font-size 0.3s;
     cursor: pointer;
 }
 
-.fullDataButton:hover{
-    font-size: 15px;
+.removeCardButton:hover{
+    font-size: 16px;
 }
+
+.observer{
+    height: 1px;
+    width: 1px;
+}
+
+

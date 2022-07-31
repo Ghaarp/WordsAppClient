@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import classes from "./styles/imageBlock.module.css";
 import commonClasses from "../../../styles/common.module.css";
 import { getClass } from "../../../utils/cssClasses";
-import CheckBox from "./elements/CheckBox";
+import CheckBox from "../../common/CheckBox";
 import loup from "../../../assets/button/loup48.png";
 import { Context } from "../../../index";
 import { observer } from "mobx-react-lite";
