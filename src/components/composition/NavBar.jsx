@@ -26,13 +26,13 @@ const NavBar = observer(({ className }) => {
     <div className={getClass([className, classes.navBar])}>
       {isAuth && (
         <AppButton className={classes.navButton} onClick={switchSideBar}>
-          Menu
+          Меню
         </AppButton>
       )}
       <MainPageLogo />
       {isAuth && (
         <AppButton className={classes.navButton} onClick={switchFriendsBar}>
-          Friends
+          Друзья
         </AppButton>
       )}
     </div>
