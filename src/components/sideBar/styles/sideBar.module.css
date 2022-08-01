@@ -1,12 +1,37 @@
+.sideBarContainer{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+    padding: 5px 0px;
+    width: auto;
+}
+
 .sideBar{
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
     align-content: center;
-    width: 0;
-    height: 100%;
     border-right: 3px dotted #aaaaaa;
+    height: 50px;
+    max-height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 0px;
+}
+
+.sideBar::-webkit-scrollbar{
+    background-color: #111111;
+    width: 5px;
+}
+
+.sideBar::-webkit-scrollbar-thumb {
+    background-color: goldenrod;
+    border-radius: 9em;
+    width: 3px;
 }
 
 .empty{
@@ -17,7 +42,7 @@
     animation: switchItemWidth 1s forwards;
 }
 .sideBar.entered{
-    width: 151px;
+    width: 160px;
 }
 .sideBar.exiting{
     animation: switchItemWidth 1s reverse;
@@ -31,9 +56,9 @@
         width: 0;
     }
     50%{
-        width: 151px;
+        width: 160px;
     }
     100%{
-        width: 151px;
+        width: 160px;
     }
 }

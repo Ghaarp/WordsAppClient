@@ -5,7 +5,7 @@
     margin-right: auto;
     color: goldenrod;
     width: 550px;
-    height: 260px;
+    height: 300px;
     border: 2px dotted #aaaaaa;
     background-color: #111111;
     flex-direction: column;
@@ -15,9 +15,9 @@
 }
 
 .flexItem{
+    position: relative;
     display: flex;
     flex: 1 1 25%;
-    border: 0px dotted #aaaaaa;
     justify-content: center;
     align-content: flex-end;
 }
@@ -28,6 +28,17 @@
 
 .authInput{
     width: 90%;
+}
+
+.errorText{
+    position: absolute;
+    top: 33px;
+    color: red;
+    border-radius: 3px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
 }
 
 .footer{

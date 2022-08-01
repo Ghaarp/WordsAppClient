@@ -24,30 +24,28 @@ const HidableGroup = ({
       className={getClass([
         className,
         classes.hidableGroup,
-        isHidden ? classes.hidden : "",
+        isHidden && classes.hidden,
       ])}
     >
-      {selectable ? (
+      {selectable && (
         <CheckBox
           className={classes.groupCheckbox}
           value={isChecked}
           switchFunction={setIsChecked}
         />
-      ) : null}
+      )}
 
       <div
         className={getClass([
           classes.header,
           commonClasses.unselectable,
-          isHidden ? classes.hidden : "",
+          isHidden && classes.hidden,
         ])}
         onClick={updateHidden}
       >
         {groupName}
       </div>
-      <div
-        className={getClass([classes.content, isHidden ? classes.hidden : ""])}
-      >
+      <div className={getClass([classes.content, isHidden && classes.hidden])}>
         {children}
       </div>
     </div>

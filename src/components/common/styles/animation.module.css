@@ -3,7 +3,7 @@
 }
 
 .item.entering, .itemReversed.exiting{
-    animation: switchItemOpacity 1s reverse;
+    animation: switchItemOpacity 0.5s reverse;
 }
 
 .item.entered, .itemReversed.exited{
@@ -11,7 +11,7 @@
 }
 
 .item.exiting, .itemReversed.entering{
-    animation: switchItemOpacity 1s forwards;
+    animation: switchItemOpacity 0.5s forwards;
 }
 
 .item.exited, .itemReversed.entered{

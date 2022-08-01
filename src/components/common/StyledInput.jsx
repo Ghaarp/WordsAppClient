@@ -6,18 +6,20 @@ const StyledInput = ({
   autoFocus,
   className,
   label,
-  setValue,
+  onChange,
   type,
   onKeyPress,
+  value,
 }) => {
   return (
     <div className={getClass([classes.inputContainer, className])}>
       <input
+        value={value}
         autoFocus={autoFocus}
         type={type}
         required
         className={getClass([classes.input])}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange}
         onKeyPress={onKeyPress}
       />
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../index";
 import classes from "./styles/error.module.css";
 import commonClasses from "./../../styles/common.module.css";

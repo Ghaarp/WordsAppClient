@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 const CardDataComponent = observer(({ showSearch }) => {
   return (
     <div className={classes.createCardContainer}>
-      {showSearch ? <Search /> : null}
+      {showSearch && <Search />}
       <ResultFrame />
     </div>
   );

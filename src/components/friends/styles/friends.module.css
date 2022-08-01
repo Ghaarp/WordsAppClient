@@ -67,16 +67,28 @@
     color: #111111;
 }
 
+.friendsPanelContainer{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+    padding: 2px 0;
+    width: auto;
+}
+
 .friendsPanel{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    height: 100%;
     padding: 25px 5px 5px 10px;
     border-left: 3px dotted #aaaaaa;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin: 3px;
+    height: 50px;
+    max-height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 0px;
 }
 
 .friendsPanel::-webkit-scrollbar{

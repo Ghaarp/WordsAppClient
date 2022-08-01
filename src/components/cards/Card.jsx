@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "../cards/styles/cards.module.css";
 import classesCommon from "../../styles/common.module.css";
 import lock_body from "../../assets/common/lock_body.png";
@@ -18,20 +18,19 @@ const Card = ({ data }) => {
 
   const imgData = JSON.parse(data?.image);
 
-  const showTranslation = useCallback(() => {
+  const showTranslation = () => {
     setIsTranslationHidden(false);
-  }, []);
+  };
 
-  const showImage = useCallback(() => {
+  const showImage = () => {
     setIsImageHidden(false);
-  }, []);
+  };
 
-  const goToCardPage = useCallback(() => {
-    console.log("trig");
+  const goToCardPage = () => {
     if (!translationResult || !data?.id) return;
     translationResult.fetchCardData(data.id);
     navigate(CARD_ROUTE);
-  }, [data]);
+  };
 
   const removeCard = () => {
     if (!data) return;
@@ -41,12 +40,12 @@ const Card = ({ data }) => {
 
   return (
     <div className={classes.card}>
-      {imgData ? (
+      {imgData && (
         <div className={classes.imgContainer}>
           <div
             className={getClass([
               classes.innerImgContainer,
-              isImageHidden ? classes.imgHidden : "",
+              isImageHidden && classes.imgHidden,
             ])}
             onClick={showImage}
           >
@@ -59,20 +58,22 @@ const Card = ({ data }) => {
                   src={lock_shackle}
                   width="64px"
                   height="64px"
+                  alt={""}
                 />
                 <img
                   className={classes.lockBody}
                   src={lock_body}
                   width="64px"
                   height="64px"
+                  alt={""}
                 />
               </div>
             ) : (
-              <img className={classes.image} src={imgData.url} />
+              <img className={classes.image} src={imgData.url} alt={"thumb"} />
             )}
           </div>
         </div>
-      ) : null}
+      )}
       <div className={classes.dataContainer}>
         <div className={classes.expression}>{data.expression}</div>
         {isTranslationHidden ? (

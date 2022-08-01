@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./styles/friends.module.css";
 import StyledInput from "../common/StyledInput";
 import AppButton from "../common/AppButton";
@@ -10,22 +10,19 @@ const FriendSearchComponent = observer(({ className }) => {
   const { friends } = useContext(Context);
   const { successfulOperation, resultMessage } = friends;
 
-  const [friendLogin, setFriendLogin] = useState();
+  const [friendLogin, setFriendLogin] = useState("");
 
-  const addFriend = useCallback(() => {
+  const addFriend = () => {
     if (!friendLogin) return;
 
     friends.inviteFriend(friendLogin);
-  }, [friends, friendLogin]);
+  };
 
-  const onPressEnter = useCallback(
-    (event) => {
-      if (event.code === "Enter") {
-        addFriend();
-      }
-    },
-    [addFriend]
-  );
+  const onPressEnter = (event) => {
+    if (event.code === "Enter") {
+      addFriend();
+    }
+  };
 
   return (
     <div className={getClass([className, classes.friendSearchContainer])}>
@@ -33,7 +30,8 @@ const FriendSearchComponent = observer(({ className }) => {
         autoFocus={true}
         className={classes.input}
         label={"Имя"}
-        setValue={setFriendLogin}
+        value={friendLogin}
+        onChange={(e) => setFriendLogin(e.target.value)}
         type={"friendLogin"}
         onKeyPress={onPressEnter}
       />

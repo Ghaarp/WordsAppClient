@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import classes from "./styles/friends.module.css";
 import CheckBox from "../common/CheckBox";
 import { Context } from "../../index";
@@ -11,50 +11,50 @@ const FriendCard = ({ data }) => {
 
   const { sharecards, friend, friendlogin, id } = data;
 
-  const acceptFriend = useCallback(() => {
+  const acceptFriend = () => {
     if (!friendlogin) return;
 
     friends.inviteFriend(friendlogin);
-  }, [friends, friendlogin]);
+  };
 
-  const removeFriend = useCallback(() => {
+  const removeFriend = () => {
     if (!friendlogin) return;
 
     friends.removeFriend(friendlogin);
-  }, [friends, friendlogin]);
+  };
 
-  const setShareCards = useCallback(() => {
+  const setShareCards = () => {
     if (!id) return;
 
     const newValue = !sharecards;
     friends.optionShareCards(friend, newValue);
-  }, [id, friends, friend, sharecards]);
+  };
 
-  const removeFriendship = useCallback(() => {
+  const removeFriendship = () => {
     if (!id) return;
 
     friends.removeFriendshipRow(id);
-  }, [friends, id]);
+  };
 
   return (
     <div className={classes.friendCard}>
       <div className={classes.cardHeader}>
         <div className={classes.login}>{friendlogin}</div>
 
-        {data.type === "0" ? <BsFriends removeFriend={removeFriend} /> : null}
-        {data.type === "1" ? <BsInvited decline={removeFriendship} /> : null}
-        {data.type === "2" ? (
+        {data.type === "0" && <BsFriends removeFriend={removeFriend} />}
+        {data.type === "1" && <BsInvited decline={removeFriendship} />}
+        {data.type === "2" && (
           <BsWaiting accept={acceptFriend} decline={removeFriendship} />
-        ) : null}
+        )}
       </div>
-      {data.type === "0" ? (
+      {data.type === "0" && (
         <div className={classes.optionContainer}>
           <div className={classes.optionLabel}>Показывать ваши карточки</div>
           <div className={classes.checkBoxContainer}>
             <CheckBox value={sharecards} switchFunction={setShareCards} />
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

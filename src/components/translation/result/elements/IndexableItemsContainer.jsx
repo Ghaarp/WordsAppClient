@@ -3,6 +3,7 @@ import classes from "./styles/elements.module.css";
 import HidableGroup from "../../../common/HidableGroup";
 import TranslationTreeComponent from "../TranslationTreeComponent";
 import { Context } from "../../../../index";
+import { partsOfSpeech } from "../../../../utils/partsOfSpeech";
 
 const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
   const { translationResult } = useContext(Context);
@@ -12,7 +13,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
     <div>
       {data.type ? (
         <HidableGroup
-          groupName={data.type}
+          groupName={partsOfSpeech[data.type] || data.type}
           selectable={isSelectionEnabled}
           isChecked={isChecked}
           setIsChecked={setIsChecked}

@@ -38,12 +38,11 @@ const CardsList = observer(() => {
       </div>
       <div className={classes.cardsListContainer}>
         <div className={classes.cardsList}>
-          {filteredCards
-            ? filteredCards.map((item, index) => {
-                return <Card key={index} data={item} />;
-              })
-            : null}
-          {isLoading ? <LoadingComponent /> : null}
+          {filteredCards &&
+            filteredCards.map((item, index) => {
+              return <Card key={index} data={item} />;
+            })}
+          {isLoading && <LoadingComponent />}
           <div className={classes.observer} ref={observerComponent} />
         </div>
       </div>

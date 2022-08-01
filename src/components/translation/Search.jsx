@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../index";
 import classes from "./styles/createCard.module.css";
 import animClasses from "./../common/styles/animation.module.css";
@@ -8,31 +8,27 @@ import StyledInput from "../common/StyledInput";
 import { Transition } from "react-transition-group";
 
 const Search = () => {
-  const [expression, setExpression] = useState();
+  const [expression, setExpression] = useState("");
   const [isMinimized, setIsMinimized] = useState(false);
 
   const { translationResult } = useContext(Context);
 
-  const { user } = useContext(Context);
-
-  const fetchTranslationResult = useCallback(async () => {
+  const fetchTranslationResult = async () => {
     if (!expression) return;
+
     translationResult.translateExpression(expression);
     switchIsMinimized();
-  }, [expression]);
+  };
 
-  const onPressEnter = useCallback(
-    (event) => {
-      if (event.code === "Enter") {
-        fetchTranslationResult();
-      }
-    },
-    [expression]
-  );
+  const onPressEnter = (event) => {
+    if (event.code === "Enter") {
+      fetchTranslationResult();
+    }
+  };
 
-  const switchIsMinimized = useCallback(() => {
+  const switchIsMinimized = () => {
     setIsMinimized(!isMinimized);
-  }, [isMinimized]);
+  };
 
   return (
     <Transition in={isMinimized} timeout={1000}>
@@ -46,7 +42,8 @@ const Search = () => {
         >
           <StyledInput
             label={"Введите выражение"}
-            setValue={setExpression}
+            value={expression}
+            onChange={(e) => setExpression(e.target.value)}
             onKeyPress={onPressEnter}
             autoFocus={true}
             className={getClass([animClasses.itemReversed, animClasses[state]])}
@@ -68,7 +65,7 @@ const Search = () => {
               className={getClass([
                 classes.arrow,
                 classes[state],
-                isMinimized ? classes.minimized : "",
+                isMinimized && classes.minimized,
               ])}
             />
           </div>

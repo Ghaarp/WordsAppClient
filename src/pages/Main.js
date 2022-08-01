@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../index";
 import MainPageAuth from "../components/mainPage/MainPageAuth";
 import MainPageNotAuth from "../components/mainPage/MainPageNotAuth";

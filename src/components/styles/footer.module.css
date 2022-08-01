@@ -4,5 +4,6 @@
     color: goldenrod;
     padding: 4px 25px;
     border-top: 3px dotted #aaaaaa;
+    min-height: 35px;
 }
 

@@ -39,12 +39,13 @@ const RarityComponent = ({ value }) => {
   });
 
   return (
-    <div className={classes.rarityComponent}>
-      {cells.map((item, index) => {
-        console.log(index);
-        return <RarityCell />;
-      })}
-      <div className={classes.tip}>{tip}</div>
+    <div className={classes.rarityContainer}>
+      <div className={classes.rarityComponent}>
+        {cells.map((item, index) => {
+          return <RarityCell key={index} />;
+        })}
+        <div className={classes.tip}>{tip}</div>
+      </div>
     </div>
   );
 };

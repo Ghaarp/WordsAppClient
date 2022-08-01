@@ -6,11 +6,11 @@
     color: goldenrod;
 }
 
-.userInfo:hover a{
+.userInfo:hover .navLink{
     opacity: 1;
 }
 
-.userInfo a{
+.userInfo .navLink{
     opacity: 0;
     transition: opacity 0.3s;
 }

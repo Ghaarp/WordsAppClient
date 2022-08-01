@@ -1,0 +1,15 @@
+export const partsOfSpeech = {
+  verb: "Глагол",
+  infinitive: "Инфинитив",
+  gerund: "Герундий",
+  particle: "Причастие",
+  noun: "Существительное",
+  adjective: "Прилагательное",
+  pronoun: "Местоимение",
+  numeral: "Числительное",
+  adverb: "Наречие",
+  article: "Артикль",
+  preposition: "Предлог",
+  conjunction: "Союз",
+  abbreviation: "Аббревиатура",
+};

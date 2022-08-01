@@ -19,20 +19,21 @@ const ImageBlock = ({ data }) => {
 
   return (
     <div className={classes.imageBlock}>
-      {data && data.imageData
-        ? data.imageData.map((imageData) => {
-            return imageData ? (
+      {data?.imageData &&
+        data.imageData.map((imageData) => {
+          return (
+            imageData && (
               <Image
                 key={imageData.id}
                 data={imageData}
                 showImage={showImage}
               />
-            ) : null;
-          })
-        : null}
-      {showPopup ? (
+            )
+          );
+        })}
+      {showPopup && (
         <FullScreenImage imageUrl={popupUrl} hide={hideFullscreenImage} />
-      ) : null}
+      )}
     </div>
   );
 };

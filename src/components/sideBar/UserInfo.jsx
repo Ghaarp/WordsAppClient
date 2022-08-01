@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../index";
 import classes from "./styles/userInfo.module.css";
+import classesCommon from "../common/styles/common.module.css";
 import defaultAvatar from "../../assets/default-ava.png";
 import { useNavigate } from "react-router-dom";
 import { MAINPAGE_ROUTE } from "../../utils/consts";
@@ -20,16 +21,17 @@ const UserInfo = ({ className }) => {
 
   return (
     <div>
-      {isAuth ? (
+      {isAuth && (
         <div className={getClass([className, classes.userInfo])}>
-          <img className={classes.avatar} src={defaultAvatar} />
-          <h5>{user.login}</h5>
-          <a href="" onClick={logout}>
+          <img className={classes.avatar} src={defaultAvatar} alt={""} />
+          <h5>{login}</h5>
+          <div
+            className={getClass([classes.navLink, classesCommon.navLink])}
+            onClick={logout}
+          >
             Выйти
-          </a>
+          </div>
         </div>
-      ) : (
-        <div />
       )}
     </div>
   );

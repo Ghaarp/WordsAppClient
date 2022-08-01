@@ -9,12 +9,12 @@ const CheckBox = ({ value, switchFunction, className, title }) => {
 
   return (
     <div className={classes.checkBoxContainer}>
-      {title ? <div className={classes.title}>{title}</div> : null}
+      {title && <div className={classes.title}>{title}</div>}
       <div
         className={getClass([
           classes.checkbox,
           className,
-          value ? classes.checked : "",
+          value && classes.checked,
         ])}
         onClick={switchValue}
       />

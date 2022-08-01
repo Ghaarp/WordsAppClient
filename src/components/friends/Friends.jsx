@@ -38,9 +38,9 @@ const Friends = observer(({ className }) => {
     });
   }, []);
 
-  const updateFriends = useCallback(() => {
+  const updateFriends = () => {
     friends.fetchFriendList();
-  }, [friends]);
+  };
 
   useEffect(() => {
     if (!friendsArray) return;
@@ -60,40 +60,39 @@ const Friends = observer(({ className }) => {
       unmountOnExit={true}
       onEntering={updateFriends}
     >
-      {(state) => (
-        <div>
-          {isAuth ? (
+      {(state) =>
+        isAuth && (
+          <div className={classes.friendsPanelContainer}>
             <div className={getClass([classes.friendsPanel, classes[state]])}>
               <FriendSearchComponent
                 className={getClass([animClasses.item, animClasses[state]])}
               />
-              {allLists
-                ? allLists.map((listObj, index) => {
-                    return listObj && listObj.list && listObj.list.length ? (
-                      <HidableGroup
-                        className={getClass([
-                          animClasses.item,
-                          animClasses[state],
-                        ])}
-                        key={index}
-                        selectable={false}
-                        groupName={listObj.name}
-                        isHiddenByDefault={false}
-                      >
-                        {listObj.list.map((item) => {
-                          return <FriendCard key={item.id} data={item} />;
-                        })}
-                      </HidableGroup>
-                    ) : null;
-                  })
-                : null}
-              {isLoading ? <LoadingComponent /> : null}
+              {allLists &&
+                allLists.map((listObj, index) => {
+                  return listObj?.list?.length ? (
+                    <HidableGroup
+                      className={getClass([
+                        animClasses.item,
+                        animClasses[state],
+                      ])}
+                      key={index}
+                      selectable={false}
+                      groupName={listObj.name}
+                      isHiddenByDefault={false}
+                    >
+                      {listObj.list.map((item) => {
+                        return <FriendCard key={item.id} data={item} />;
+                      })}
+                    </HidableGroup>
+                  ) : (
+                    <div />
+                  );
+                })}
+              {isLoading && <LoadingComponent />}
             </div>
-          ) : (
-            <div />
-          )}
-        </div>
-      )}
+          </div>
+        )
+      }
     </Transition>
   );
 });

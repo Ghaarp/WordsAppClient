@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import classes from "./styles/main.module.css";
 import MainPageButton from "./MainPageButton";
 import imgCreate from "../../assets/button/plus32.png";
@@ -13,16 +13,16 @@ const MainPageAuth = () => {
 
   const navigate = useNavigate();
 
-  const createNewCard = useCallback(() => {
+  const createNewCard = () => {
     if (!translationResult) return;
     translationResult.reset();
     navigate(CREATE_ROUTE);
-  }, [translationResult, navigate]);
+  };
 
-  const showCardsList = useCallback(() => {
+  const showCardsList = () => {
     cards.reset();
     navigate(CARDS_LIST_ROUTE);
-  }, [navigate]);
+  };
 
   return (
     <div className={classes.mainPageAuth}>

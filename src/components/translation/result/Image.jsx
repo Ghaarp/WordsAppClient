@@ -38,20 +38,20 @@ const Image = ({ data, showImage }) => {
 
   return (
     <div>
-      {data && data.thumbnail && data.thumbnail.url ? (
+      {data?.thumbnail?.url && (
         <div
           className={getClass([
             classes.imageContainer,
-            isChecked ? classes.checked : "",
+            isChecked && classes.checked,
           ])}
         >
-          {isSelectionEnabled ? (
+          {isSelectionEnabled && (
             <CheckBox
               className={classes.imageFlag}
               value={isChecked}
               switchFunction={updateIsChecked}
             />
-          ) : null}
+          )}
           <img
             src={data.thumbnail.url}
             className={getClass([classes.image, commonClasses.unselectable])}
@@ -60,7 +60,7 @@ const Image = ({ data, showImage }) => {
             onClick={showFullscreenImage}
           />
           <img src={loup} className={classes.increase} />
-          {isSelectionEnabled ? (
+          {isSelectionEnabled && (
             <div
               className={classes.setAsMainButton}
               onClick={updateIsMainElement}
@@ -70,9 +70,9 @@ const Image = ({ data, showImage }) => {
                 ? "Основное изображение"
                 : "Установить как основное изображение"}
             </div>
-          ) : null}
+          )}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

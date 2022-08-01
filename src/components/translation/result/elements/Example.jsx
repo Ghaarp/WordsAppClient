@@ -12,9 +12,9 @@ const Example = ({ data }) => {
         />
         "
       </div>
-      {data.source ? (
+      {data?.source && (
         <div className={classes.textValue}> - {data.source}</div>
-      ) : null}{" "}
+      )}{" "}
     </div>
   );
 };

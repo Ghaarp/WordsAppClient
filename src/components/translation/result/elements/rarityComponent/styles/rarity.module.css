@@ -1,7 +1,13 @@
+.rarityContainer{
+    position: relative;
+    width: 30px;
+    margin-left: 5px;
+}
+
 .rarityComponent{
     position: absolute;
     top: -4px;
-    right: -33px;
+    left: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 1px;

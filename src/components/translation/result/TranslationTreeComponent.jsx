@@ -37,16 +37,16 @@ const TranslationTreeComponent = ({
     <div
       className={getClass([
         classes.TranslationTreeContainer,
-        innerIndex ? classes.borderedContainer : "",
+        innerIndex && classes.borderedContainer,
       ])}
     >
       {/* Selection checkbox */}
-      {selectable && isSelectionEnabled ? (
+      {selectable && isSelectionEnabled && (
         <CheckBox value={isChecked} switchFunction={updateIsChecked} />
-      ) : null}
+      )}
 
       {/* Element index */}
-      {innerIndex ? <ElementIndex innerIndex={innerIndex} /> : null}
+      {innerIndex && <ElementIndex innerIndex={innerIndex} />}
 
       {/* Inner element container for data */}
       <div
@@ -55,64 +55,64 @@ const TranslationTreeComponent = ({
           classes.TranslationTreeComponent,
         ])}
       >
-        {data && data.imageData ? (
+        {data && data.imageData && (
           <GroupedData
             data={data.imageData}
             isImageBlock={true}
             groupName={"Изображения"}
           />
-        ) : null}
+        )}
 
-        {data && data.translationsData ? (
+        {data?.translationsData && (
           <GroupedData
             data={data.translationsData}
             groupName={"Варианты перевода"}
           />
-        ) : null}
+        )}
 
-        {data && data.definitionsData ? (
+        {data?.definitionsData && (
           <GroupedData data={data.definitionsData} groupName={"Определения"} />
-        ) : null}
+        )}
 
-        {data && data.examplesData ? (
+        {data?.examplesData && (
           <GroupedData data={data.examplesData} groupName={"Примеры"} />
-        ) : null}
+        )}
 
         {/* Tags list (container) */}
-        {data && data.tags ? <TagsList data={data} /> : null}
+        {data?.tags && <TagsList data={data} />}
 
         {/* Tag element */}
-        {data && data.tag ? <Tag data={data} /> : null}
+        {data?.tag && <Tag data={data} />}
 
         {/* Meaning with example (if presented) (element) */}
-        {data && data.meaning ? <Meaning data={data} /> : null}
+        {data?.meaning && <Meaning data={data} />}
 
         {/* Translation element with rarity of using (1 == most frequent, 3 == very rare) */}
-        {data && data.value && data.rarity ? <Translation data={data} /> : null}
+        {data?.value && data.rarity && <Translation data={data} />}
 
         {/* Example element */}
-        {data && data.example ? <Example data={data} /> : null}
+        {data?.example && <Example data={data} />}
 
         {/* Synonym element */}
-        {data && data.synonym ? <Synonym data={data} /> : null}
+        {data?.synonym && <Synonym data={data} />}
 
         {/* Translations container */}
-        {data && data.translations ? <TranslationsList data={data} /> : null}
+        {data?.translations && <TranslationsList data={data} />}
 
         {/* Synonym groups (container) */}
-        {data && data.synonymGroups ? <SynonymGroups data={data} /> : null}
+        {data?.synonymGroups && <SynonymGroups data={data} />}
 
         {/* Container with items */}
-        {data && data.items ? <ItemsContainer data={data} /> : null}
+        {data?.items && <ItemsContainer data={data} />}
 
         {/* Container with indexed items (to show nums) */}
-        {data && data.indexableItems ? (
+        {data?.indexableItems && (
           <IndexableItemsContainer
             data={data}
             isChecked={isChecked}
             setIsChecked={updateIsChecked}
           />
-        ) : null}
+        )}
       </div>
     </div>
   );
