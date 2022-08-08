@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./styles/auth.module.css";
 import classesCommon from "../common/styles/common.module.css";
@@ -12,7 +12,7 @@ import StyledInput from "../common/StyledInput";
 import AppButton from "../common/AppButton";
 import { Context } from "../../index";
 
-const AuthComponent = observer(() => {
+const Auth = observer(() => {
   const { user, appState } = useContext(Context);
 
   useEffect(() => {
@@ -129,4 +129,4 @@ const AuthComponent = observer(() => {
   );
 });
 
-export default AuthComponent;
+export default Auth;

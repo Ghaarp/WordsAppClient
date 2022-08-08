@@ -3,15 +3,15 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import classes from "./styles/friends.module.css";
 import animClasses from "../common/styles/animation.module.css";
-import FriendSearchComponent from "./FriendSearchComponent";
+import FriendSearch from "./FriendSearch";
 import { toJS } from "mobx";
 import FriendCard from "./FriendCard";
 import HidableGroup from "../common/HidableGroup";
 import { getClass } from "../../utils/cssClasses";
 import { Transition } from "react-transition-group";
-import LoadingComponent from "../common/LoadingComponent";
+import Loading from "../common/Loading";
 
-const Friends = observer(({ className }) => {
+const Friends = observer(() => {
   const [allLists, setAllLists] = useState([]);
 
   const { user, appState, friends } = useContext(Context);
@@ -64,7 +64,7 @@ const Friends = observer(({ className }) => {
         isAuth && (
           <div className={classes.friendsPanelContainer}>
             <div className={getClass([classes.friendsPanel, classes[state]])}>
-              <FriendSearchComponent
+              <FriendSearch
                 className={getClass([animClasses.item, animClasses[state]])}
               />
               {allLists &&
@@ -88,7 +88,7 @@ const Friends = observer(({ className }) => {
                     <div />
                   );
                 })}
-              {isLoading && <LoadingComponent />}
+              {isLoading && <Loading />}
             </div>
           </div>
         )

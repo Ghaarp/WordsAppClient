@@ -1,8 +1,8 @@
 import React from "react";
-import CardDataComponent from "../components/translation/CardDataComponent";
+import CardData from "../components/translation/CardData";
 
 const Create = () => {
-  return <CardDataComponent showSearch={"true"} />;
+  return <CardData showSearch={"true"} />;
 };
 
 export default Create;

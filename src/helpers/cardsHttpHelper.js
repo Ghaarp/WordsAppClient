@@ -17,6 +17,7 @@ export class CardsHttpHelper {
       }
       return res;
     } catch (e) {
+      console.log(e);
     } finally {
       contextObject.setIsLoading(false);
     }

@@ -4,7 +4,7 @@ import classes from "./styles/createCard.module.css";
 import ResultFrame from "./ResultFrame";
 import { observer } from "mobx-react-lite";
 
-const CardDataComponent = observer(({ showSearch }) => {
+const CardData = observer(({ showSearch }) => {
   return (
     <div className={classes.createCardContainer}>
       {showSearch && <Search />}
@@ -13,4 +13,4 @@ const CardDataComponent = observer(({ showSearch }) => {
   );
 });
 
-export default CardDataComponent;
+export default CardData;

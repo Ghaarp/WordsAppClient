@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import classes from "./styles/rarity.module.css";
+import classes from "./styles/elements.module.css";
 import RarityCell from "./RarityCell";
 
-const RarityComponent = ({ value }) => {
+const Rarity = ({ value }) => {
   const [cells, setCells] = useState([]);
   const [tip, setTip] = useState();
 
@@ -50,4 +50,4 @@ const RarityComponent = ({ value }) => {
   );
 };
 
-export default RarityComponent;
+export default Rarity;

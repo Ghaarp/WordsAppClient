@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./styles/rarity.module.css";
+import classes from "./styles/elements.module.css";
 
 const RarityCell = () => {
   return <div className={classes.rarityCell}></div>;

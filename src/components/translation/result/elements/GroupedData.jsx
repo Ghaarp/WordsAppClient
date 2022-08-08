@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ImageBlock from "../ImageBlock";
 import HidableGroup from "../../../common/HidableGroup";
 import { Context } from "../../../../index";
-import TranslationTreeComponent from "../TranslationTreeComponent";
+import TranslationTreeElement from "../TranslationTreeElement";
 
 const GroupedData = ({ data, groupName, isImageBlock }) => {
   const { translationResult } = useContext(Context);
@@ -25,7 +25,7 @@ const GroupedData = ({ data, groupName, isImageBlock }) => {
       {isImageBlock ? (
         <ImageBlock data={data} />
       ) : (
-        <TranslationTreeComponent data={data} />
+        <TranslationTreeElement data={data} />
       )}
     </HidableGroup>
   );

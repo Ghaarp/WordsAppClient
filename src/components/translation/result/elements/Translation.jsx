@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "./styles/elements.module.css";
-import RarityComponent from "./rarityComponent/RarityComponent";
+import Rarity from "./Rarity";
 
 const Translation = ({ data }) => {
   return (
     <div className={classes.textTranslation}>
-      {data.value} <RarityComponent value={data.rarity} />
+      {data.value} <Rarity value={data.rarity} />
     </div>
   );
 };

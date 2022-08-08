@@ -3,11 +3,11 @@ import classes from "./styles/result.module.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { toJS } from "mobx";
-import TranslationTreeComponent from "./result/TranslationTreeComponent";
+import TranslationTreeElement from "./result/TranslationTreeElement";
 import AppButton from "../common/AppButton";
 import { useNavigate } from "react-router-dom";
 import { MAINPAGE_ROUTE } from "../../utils/consts";
-import LoadingComponent from "../common/LoadingComponent";
+import Loading from "../common/Loading";
 import Fix from "./result/elements/Fix";
 
 const ResultFrame = observer(() => {
@@ -28,7 +28,7 @@ const ResultFrame = observer(() => {
   return (
     <div className={classes.resultContainer}>
       {isLoading ? (
-        <LoadingComponent />
+        <Loading />
       ) : (
         <div>
           {translation?.data?.fix && <Fix data={translation.data.fix} />}
@@ -43,7 +43,7 @@ const ResultFrame = observer(() => {
             </div>
           )}
 
-          {additionalData && <TranslationTreeComponent data={additionalData} />}
+          {additionalData && <TranslationTreeElement data={additionalData} />}
 
           {translation && isSelectionEnabled && (
             <div className={classes.translationBlock}>

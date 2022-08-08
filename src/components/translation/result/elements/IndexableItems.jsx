@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import classes from "./styles/elements.module.css";
 import HidableGroup from "../../../common/HidableGroup";
-import TranslationTreeComponent from "../TranslationTreeComponent";
+import TranslationTreeElement from "../TranslationTreeElement";
 import { Context } from "../../../../index";
 import { partsOfSpeech } from "../../../../utils/partsOfSpeech";
 
-const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
+const IndexableItems = ({ data, isChecked, setIsChecked }) => {
   const { translationResult } = useContext(Context);
   const { isSelectionEnabled } = translationResult;
 
@@ -21,7 +21,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
         >
           <div className={classes.items}>
             {data.indexableItems.map((element, index) => (
-              <TranslationTreeComponent
+              <TranslationTreeElement
                 key={element.id}
                 data={element}
                 innerIndex={++index}
@@ -33,7 +33,7 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
       ) : (
         <div className={classes.items}>
           {data.indexableItems.map((element, index) => (
-            <TranslationTreeComponent
+            <TranslationTreeElement
               key={element.id}
               data={element}
               innerIndex={++index}
@@ -46,4 +46,4 @@ const IndexableItemsContainer = ({ data, isChecked, setIsChecked }) => {
   );
 };
 
-export default IndexableItemsContainer;
+export default IndexableItems;

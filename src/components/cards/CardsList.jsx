@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import classes from "./styles/cards.module.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
-import LoadingComponent from "../common/LoadingComponent";
+import Loading from "../common/Loading";
 import { toJS } from "mobx";
 import Card from "./Card";
 import CheckBox from "../common/CheckBox";
@@ -42,7 +42,7 @@ const CardsList = observer(() => {
             filteredCards.map((item, index) => {
               return <Card key={index} data={item} />;
             })}
-          {isLoading && <LoadingComponent />}
+          {isLoading && <Loading />}
           <div className={classes.observer} ref={observerComponent} />
         </div>
       </div>

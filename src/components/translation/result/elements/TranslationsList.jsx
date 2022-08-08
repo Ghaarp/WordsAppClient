@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "./styles/elements.module.css";
-import TranslationTreeComponent from "../TranslationTreeComponent";
+import TranslationTreeElement from "../TranslationTreeElement";
 
 const TranslationsList = ({ data }) => {
   return (
     <div className={classes.translations}>
-      <TranslationTreeComponent data={data.translations} />
+      <TranslationTreeElement data={data.translations} />
     </div>
   );
 };

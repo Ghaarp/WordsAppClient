@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import { getClass } from "../../utils/cssClasses";
 
-const FriendSearchComponent = observer(({ className }) => {
+const FriendSearch = observer(({ className }) => {
   const { friends } = useContext(Context);
   const { successfulOperation, resultMessage } = friends;
 
@@ -43,4 +43,4 @@ const FriendSearchComponent = observer(({ className }) => {
   );
 });
 
-export default FriendSearchComponent;
+export default FriendSearch;

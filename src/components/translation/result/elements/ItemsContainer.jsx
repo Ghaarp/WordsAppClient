@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./styles/elements.module.css";
-import TranslationTreeComponent from "../TranslationTreeComponent";
+import TranslationTreeElement from "../TranslationTreeElement";
 
 const ItemsContainer = ({ data }) => {
   return (
     <div className={classes.items}>
       {data.items.map((element, index) => (
-        <TranslationTreeComponent key={element.id} data={element} />
+        <TranslationTreeElement key={element.id} data={element} />
       ))}
     </div>
   );

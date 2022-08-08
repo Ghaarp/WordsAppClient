@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "../common/styles/common.module.css";
 
-const LoadingComponent = () => {
+const Loading = () => {
   return (
     <div className={classes.loadingContainer}>
       <div className={classes.loading} />
@@ -9,4 +9,4 @@ const LoadingComponent = () => {
   );
 };
 
-export default LoadingComponent;
+export default Loading;

@@ -1,4 +1,5 @@
 import Main from "./pages/Main";
+import React from "react";
 import {
   CARD_ROUTE,
   CARDS_LIST_ROUTE,
@@ -7,8 +8,7 @@ import {
   MAINPAGE_ROUTE,
   REGISTER_ROUTE,
 } from "./utils/consts";
-import Auth from "./pages/Auth";
-import CardDataComponent from "./components/translation/CardDataComponent";
+import Authorization from "./pages/Authorization";
 import Cards from "./pages/Cards";
 import CardPage from "./pages/CardPage";
 import Create from "./pages/Create";
@@ -39,10 +39,10 @@ export const publicRoutes = [
   },
   {
     path: LOGIN_ROUTE,
-    component: <Auth />,
+    component: <Authorization />,
   },
   {
     path: REGISTER_ROUTE,
-    component: <Auth />,
+    component: <Authorization />,
   },
 ];

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./styles/imageBlock.module.css";
 import commonClasses from "../../../styles/common.module.css";
 import { getClass } from "../../../utils/cssClasses";

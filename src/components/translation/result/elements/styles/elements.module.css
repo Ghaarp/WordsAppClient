@@ -139,3 +139,53 @@
 .fix .tag{
     font-size: 12px;
 }
+
+.rarityContainer{
+    position: relative;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.rarityComponent{
+    position: absolute;
+    top: -4px;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1px;
+    border: 1px solid goldenrod;
+    border-radius: 4px;
+    padding: 1px;
+    height: 12px;
+    width: 30px;
+    background-color: #111111;
+}
+
+.rarityCell{
+    width: 8px;
+    height: 8px;
+    border: 1px solid #111111;
+    border-radius: 50%;
+    background-color: goldenrod;
+}
+
+.rarityComponent .tip{
+    display: none;
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    padding: 1px;
+    border: 1px solid goldenrod;
+    border-radius: 4px;
+    background-color: #111111;
+    color: goldenrod;
+    font-size: 10px;
+    white-space: nowrap;
+    width: auto;
+    height: 15px;
+    cursor: pointer;
+}
+
+.rarityComponent:hover .tip{
+    display: block;
+}

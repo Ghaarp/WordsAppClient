@@ -30,7 +30,7 @@ export class TranslationStore {
     this._contextStore = contextStore;
   }
 
-  //Setters
+  // Setters
   setTranslation(result) {
     this._isLoading = false;
     this._translationOriginal =
@@ -44,7 +44,7 @@ export class TranslationStore {
     this._isLoading = value;
   }
 
-  //Getters
+  // Getters
   get translation() {
     return this._translation;
   }
@@ -57,7 +57,7 @@ export class TranslationStore {
     return this._isSelectionEnabled;
   }
 
-  //Private methods
+  // Private methods
   _updateTranslation() {
     this._translation = this._translationOriginal;
   }
@@ -83,7 +83,7 @@ export class TranslationStore {
     }
   }
 
-  //Public methods
+  // Public methods
   updateIsChecked(id, value) {
     if (!this._translationOriginal) return;
     const translationHelper = new TranslationHelper(this._translationOriginal);
@@ -118,7 +118,6 @@ export class TranslationStore {
       this._contextStore.error
     );
     const translationData = res?.response?.data;
-    console.log(translationData);
     this.setTranslation(translationData);
   }
 

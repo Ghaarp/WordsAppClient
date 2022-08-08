@@ -1,8 +1,8 @@
 import React from "react";
-import CardDataComponent from "../components/translation/CardDataComponent";
+import CardData from "../components/translation/CardData";
 
 const CardPage = () => {
-  return <CardDataComponent showSearch={false} />;
+  return <CardData showSearch={false} />;
 };
 
 export default CardPage;

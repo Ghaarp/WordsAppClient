@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import classes from "./styles/tree.module.css";
 import { getClass } from "../../../utils/cssClasses";
 import CheckBox from "../../common/CheckBox";
@@ -12,11 +12,11 @@ import Synonym from "./elements/Synonym";
 import TranslationsList from "./elements/TranslationsList";
 import SynonymGroups from "./elements/SynonymGroups";
 import ItemsContainer from "./elements/ItemsContainer";
-import IndexableItemsContainer from "./elements/IndexableItemsContainer";
+import IndexableItems from "./elements/IndexableItems";
 import { Context } from "../../../index";
 import GroupedData from "./elements/GroupedData";
 
-const TranslationTreeComponent = ({
+const TranslationTreeElement = ({
   data,
   innerIndex,
   classNameAdditive,
@@ -107,7 +107,7 @@ const TranslationTreeComponent = ({
 
         {/* Container with indexed items (to show nums) */}
         {data?.indexableItems && (
-          <IndexableItemsContainer
+          <IndexableItems
             data={data}
             isChecked={isChecked}
             setIsChecked={updateIsChecked}
@@ -118,4 +118,4 @@ const TranslationTreeComponent = ({
   );
 };
 
-export default TranslationTreeComponent;
+export default TranslationTreeElement;
