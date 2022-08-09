@@ -33,10 +33,9 @@ export class TranslationStore {
   // Setters
   setTranslation(result) {
     this._isLoading = false;
-    this._translationOriginal =
-      this._operation === Operations.TRANSLATE
-        ? new TranslationHelper(result).addRequiredFields()
-        : result;
+    this._translationOriginal = new TranslationHelper(
+      result
+    ).addRequiredFields();
     this._updateTranslation();
   }
 
