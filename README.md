@@ -2,7 +2,7 @@
 ## React application 
 
 ## Important info!
-  You can see current version [here](https://ghaarp.github.io/WordsAppClient/, "WordsApp"). The backend is hosted on the Heroku platform, which forces applications to sleep if they have not been used for a while. This is why the first request in the application can take a long time to process (10-20 seconds). Just be patient! 
+  You can see current version [here](https://ghaarp.github.io/WordsAppClient "WordsApp"). The backend is hosted on the Heroku platform, which forces applications to sleep if they have not been used for a while. This is why the first request in the application can take a long time to process (10-20 seconds). Just be patient! 
 
 ### Overall
   WordsApp is an application for self-studying. The main function of the application is to help you learn english words that you have problems with. When you translate a word or an idiom in Wordsapp, you can see all additional information about them. The application shows you all translations, synonyms, frequency of use, examples and images to make understanding and memorization easier.
