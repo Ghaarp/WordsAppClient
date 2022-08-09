@@ -23,3 +23,6 @@ It is a recursive element that builds other elements based on received data. The
   Received translation data is stored in the mobx store src/store/TranslationStore.js. After receiving the translation data, helpers mark each element with a unique ID and checkmarks, and then it goes to render. IDs help to bind each tree element to a component, which helps to recursively choose only elements that the user wants to save.
   
   When the user clicks the "save card" button, mobx store generates JSON file via helper based on marked elements, and sends this file to the server to be saved in BD.
+  
+### Why I made this application
+  The main purpose of making this app was to practice web development. In particular, while making this app, I have learned a lot about React hooks, components decomposition and JS syntax. I have finished an html/css3 course right before starting to make this app, and one of the main goals was to practice CSS. That is why I made all the styles myself instead of using existing UI libraries.
