@@ -9,4 +9,4 @@ export const CARD_ROUTE = "/card";
 //Misc
 export const TOKEN_STORAGE_KEY = "WordsApp_token";
 //export const REACT_APP_API_URL = "http://localhost:7000/";
-export const REACT_APP_API_URL = "https://my-words-app-server.herokuapp.com/";
+export const REACT_APP_API_URL = "https://my-words-app-server.fly.dev/";

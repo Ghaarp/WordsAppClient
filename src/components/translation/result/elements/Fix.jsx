@@ -1,10 +1,12 @@
+/* eslint-disable no-useless-escape */
+
 import React, { useContext } from "react";
 import classes from "./styles/elements.module.css";
 import { Context } from "../../../../index";
 
 const Fix = ({ data }) => {
   const { translationResult } = useContext(Context);
-  const fix = data.replace(/[\[\]]/g, "");
+  const fix = data.replace(/[\[\]]/g, '');
 
   const fixResult = async () => {
     if (!fix) return;

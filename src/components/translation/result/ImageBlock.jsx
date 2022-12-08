@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Image from "./Image";
 import classes from "./styles/imageBlock.module.css";
 import FullScreenImage from "./FullScreenImage";
-import { Context } from "../../../index";
 
 const ImageBlock = ({ data }) => {
   const [showPopup, setShowPopup] = useState(false);
