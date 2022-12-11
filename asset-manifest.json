@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/WordsAppClient/static/css/main.ab3f84c6.css",
-    "main.js": "/WordsAppClient/static/js/main.de4ace73.js",
+    "main.js": "/WordsAppClient/static/js/main.22200926.js",
     "static/media/default-ava.png": "/WordsAppClient/static/media/default-ava.ca7543eb8c998f624dc7.png",
     "index.html": "/WordsAppClient/index.html",
     "main.ab3f84c6.css.map": "/WordsAppClient/static/css/main.ab3f84c6.css.map",
-    "main.de4ace73.js.map": "/WordsAppClient/static/js/main.de4ace73.js.map"
+    "main.22200926.js.map": "/WordsAppClient/static/js/main.22200926.js.map"
   },
   "entrypoints": [
     "static/css/main.ab3f84c6.css",
-    "static/js/main.de4ace73.js"
+    "static/js/main.22200926.js"
   ]
 }
